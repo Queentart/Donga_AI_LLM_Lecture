@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>LLM Whitepaper Detail Page</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <!-- Theme Config -->
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#1337ec",
+              "background-light": "#f6f6f8",
+              "background-dark": "#101322",
+              "surface-dark": "#181b2c",
+              "surface-light": "#ffffff",
+            },
+            fontFamily: {
+              display: ["Space Grotesk", "sans-serif"],
+              body: ["Space Grotesk", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              "2xl": "1rem",
+              full: "9999px",
+            },
+          },
+        },
+      };
+    </script>
+    <!-- Fonts & Icons -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Space Grotesk", sans-serif;
+      }
+      /* Custom scrollbar for better aesthetic in dark mode */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #111422;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #232948;
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #323b67;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-background-light dark:bg-background-dark min-h-screen flex flex-col transition-colors duration-200 text-slate-900 dark:text-slate-50"
+  >
+    <!-- Header -->
+    <header
+      class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-[#232948] bg-background-light/80 dark:bg-[#111422]/90 backdrop-blur-md px-4 sm:px-10 py-3"
+    >
+      <div class="flex items-center gap-8">
+        <div class="flex items-center gap-4 dark:text-white text-slate-900">
+          <div
+            class="size-8 flex items-center justify-center bg-primary rounded-lg text-white"
+          >
+            <span class="material-symbols-outlined !text-[20px]">science</span>
+          </div>
+          <h2
+            class="text-lg font-bold leading-tight tracking-[-0.015em] hidden sm:block"
+          >
+            AI Research Hub
+          </h2>
+        </div>
+        <nav class="hidden md:flex items-center gap-9">
+          <a
+            class="text-sm font-medium leading-normal hover:text-primary transition-colors"
+            href="#"
+            >Home</a
+          >
+          <a
+            class="text-sm font-medium leading-normal hover:text-primary transition-colors text-primary"
+            href="#"
+            >Research</a
+          >
+          <a
+            class="text-sm font-medium leading-normal hover:text-primary transition-colors"
+            href="#"
+            >Team</a
+          >
+          <a
+            class="text-sm font-medium leading-normal hover:text-primary transition-colors"
+            href="#"
+            >About</a
+          >
+        </nav>
+      </div>
+      <div class="flex items-center gap-4">
+        <button
+          class="md:hidden p-2 text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
+        >
+          <span class="material-symbols-outlined">menu</span>
+        </button>
+        <div class="hidden md:flex flex-1 justify-end gap-4">
+          <div class="relative group">
+            <span
+              class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 dark:text-[#929bc9] material-symbols-outlined !text-[20px]"
+              >search</span
+            >
+            <input
+              class="w-64 h-10 bg-slate-100 dark:bg-[#232948] rounded-lg pl-10 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-[#929bc9]"
+              placeholder="Search papers..."
+            />
+          </div>
+          <button
+            class="flex items-center justify-center rounded-lg h-10 px-4 bg-primary hover:bg-primary/90 transition-colors text-white text-sm font-bold leading-normal tracking-[0.015em]"
+          >
+            Sign In
+          </button>
+        </div>
+      </div>
+    </header>
+    <main
+      class="flex-grow flex flex-col items-center w-full px-4 sm:px-8 py-8 md:py-12"
+    >
+      <div
+        class="w-full max-w-[1200px] flex flex-col lg:flex-row gap-12 relative"
+      >
+        <!-- Sticky Sidebar (Table of Contents) -->
+        <aside class="hidden lg:block w-64 shrink-0">
+          <div class="sticky top-24 flex flex-col gap-6">
+            <div
+              class="flex items-center gap-2 text-slate-400 dark:text-slate-500 uppercase text-xs font-bold tracking-widest"
+            >
+              <span class="material-symbols-outlined !text-[16px]">toc</span>
+              Table of Contents
+            </div>
+            <nav
+              class="flex flex-col border-l border-slate-200 dark:border-[#232948]"
+            >
+              <a
+                class="pl-4 py-2 border-l-2 border-primary text-primary font-medium text-sm transition-all"
+                href="#introduction"
+                >1. Introduction</a
+              >
+              <a
+                class="pl-4 py-2 border-l-2 border-transparent hover:border-slate-300 dark:hover:border-slate-600 text-slate-600 dark:text-[#929bc9] hover:text-slate-900 dark:hover:text-white text-sm transition-all"
+                href="#architecture"
+                >2. Architectural Foundations</a
+              >
+              <a
+                class="pl-4 py-2 border-l-2 border-transparent hover:border-slate-300 dark:hover:border-slate-600 text-slate-600 dark:text-[#929bc9] hover:text-slate-900 dark:hover:text-white text-sm transition-all"
+                href="#training"
+                >3. Training Methodologies</a
+              >
+              <a
+                class="pl-4 py-2 border-l-2 border-transparent hover:border-slate-300 dark:hover:border-slate-600 text-slate-600 dark:text-[#929bc9] hover:text-slate-900 dark:hover:text-white text-sm transition-all"
+                href="#challenges"
+                >4. Key Challenges</a
+              >
+              <a
+                class="pl-4 py-2 border-l-2 border-transparent hover:border-slate-300 dark:hover:border-slate-600 text-slate-600 dark:text-[#929bc9] hover:text-slate-900 dark:hover:text-white text-sm transition-all"
+                href="#future"
+                >5. Future Directions</a
+              >
+            </nav>
+            <div
+              class="p-4 rounded-xl bg-slate-100 dark:bg-[#191e33] border border-slate-200 dark:border-[#232948] mt-4"
+            >
+              <p
+                class="text-xs text-slate-500 dark:text-slate-400 mb-3 font-medium"
+              >
+                Enjoying this research?
+              </p>
+              <button
+                class="w-full flex items-center justify-center gap-2 h-9 rounded-lg bg-white dark:bg-[#232948] border border-slate-200 dark:border-slate-700 hover:border-primary dark:hover:border-primary text-xs font-bold transition-all shadow-sm"
+              >
+                <span class="material-symbols-outlined !text-[16px]">mail</span>
+                Subscribe to Newsletter
+              </button>
+            </div>
+          </div>
+        </aside>
+        <!-- Main Content Area -->
+        <article class="flex-1 max-w-[800px] mx-auto lg:mx-0 min-w-0">
+          <!-- Page Heading -->
+          <div
+            class="mb-12 border-b border-slate-200 dark:border-[#232948] pb-8"
+          >
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span
+                class="px-2 py-1 rounded bg-blue-100 dark:bg-blue-900/30 text-primary text-xs font-bold uppercase tracking-wider"
+                >Whitepaper</span
+              >
+              <span
+                class="px-2 py-1 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-xs font-bold uppercase tracking-wider"
+                >NLP</span
+              >
+            </div>
+            <h1
+              class="text-3xl md:text-5xl font-black leading-[1.1] tracking-[-0.033em] mb-6 text-slate-900 dark:text-white"
+            >
+              Large Language Models: An In-Depth Analysis
+            </h1>
+            <div
+              class="flex flex-col sm:flex-row sm:items-center justify-between gap-6"
+            >
+              <div class="flex items-center gap-3">
+                <div
+                  class="size-10 rounded-full bg-slate-200 dark:bg-[#232948] overflow-hidden"
+                  data-alt="Author profile picture abstract gradient"
+                >
+                  <div
+                    class="w-full h-full bg-gradient-to-br from-blue-400 to-purple-600"
+                  ></div>
+                </div>
+                <div>
+                  <p class="text-sm font-bold text-slate-900 dark:text-white">
+                    AI Research Team
+                  </p>
+                  <p class="text-xs text-slate-500 dark:text-[#929bc9]">
+                    October 26, 2023 • 15 min read
+                  </p>
+                </div>
+              </div>
+              <div class="flex gap-3">
+                <button
+                  class="flex items-center gap-2 h-10 px-4 rounded-lg bg-primary hover:bg-blue-700 text-white text-sm font-bold transition-colors shadow-lg shadow-blue-900/20"
+                >
+                  <span class="material-symbols-outlined !text-[18px]"
+                    >download</span
+                  >
+                  Download PDF
+                </button>
+                <button
+                  class="flex items-center justify-center size-10 rounded-lg bg-slate-100 dark:bg-[#232948] text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-[#323b67] transition-colors"
+                >
+                  <span class="material-symbols-outlined !text-[20px]"
+                    >share</span
+                  >
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- Abstract / Intro -->
+          <section class="mb-16 scroll-mt-28" id="introduction">
+            <h2 class="text-2xl font-bold mb-4 flex items-center gap-3">
+              <span
+                class="flex items-center justify-center size-8 rounded bg-primary/10 text-primary text-sm font-bold"
+                >01</span
+              >
+              Introduction
+            </h2>
+            <p
+              class="text-lg leading-relaxed text-slate-700 dark:text-slate-300 mb-6"
+            >
+              Large Language Models (LLMs) represent a paradigm shift in
+              artificial intelligence, demonstrating unprecedented capabilities
+              in natural language understanding and generation. Unlike previous
+              generations of NLP models, LLMs leverage massive datasets and
+              transformer-based architectures to learn generalizable patterns of
+              human language.
+            </p>
+            <div
+              class="p-6 rounded-xl bg-slate-100 dark:bg-[#181b2c] border-l-4 border-primary"
+            >
+              <p class="italic text-slate-600 dark:text-slate-400 font-medium">
+                "The scale of these models has unlocked emergent
+                behaviors—capabilities that were not explicitly trained for but
+                arose from the complexity of the learned representations."
+              </p>
+            </div>
+          </section>
+          <!-- Architecture -->
+          <section class="mb-16 scroll-mt-28" id="architecture">
+            <h2 class="text-2xl font-bold mb-6 flex items-center gap-3">
+              <span
+                class="flex items-center justify-center size-8 rounded bg-primary/10 text-primary text-sm font-bold"
+                >02</span
+              >
+              Architectural Foundations
+            </h2>
+            <p
+              class="text-base leading-relaxed text-slate-600 dark:text-slate-400 mb-6"
+            >
+              At the heart of modern LLMs lies the
+              <strong>Transformer architecture</strong>, introduced by Vaswani
+              et al. in 2017. This architecture moved away from recurrent neural
+              networks (RNNs) and instead relies entirely on self-attention
+              mechanisms to process input data in parallel.
+            </p>
+            <!-- Diagram Card -->
+            <div
+              class="mb-8 overflow-hidden rounded-xl border border-slate-200 dark:border-[#232948] bg-white dark:bg-[#151929]"
+            >
+              <div
+                class="p-4 border-b border-slate-200 dark:border-[#232948] bg-slate-50 dark:bg-[#191e33] flex justify-between items-center"
+              >
+                <span
+                  class="text-xs font-bold uppercase tracking-wider text-slate-500"
+                  >Figure 1.0: Simplified Transformer Block</span
+                >
+                <span
+                  class="material-symbols-outlined text-slate-400 !text-[18px]"
+                  >open_in_full</span
+                >
+              </div>
+              <div
+                class="p-8 flex flex-col items-center justify-center bg-slate-50 dark:bg-[#111422] relative"
+              >
+                <!-- Abstract SVG Diagram representation -->
+                <div class="relative w-full max-w-md h-64">
+                  <!-- Input -->
+                  <div
+                    class="absolute top-0 left-1/2 -translate-x-1/2 px-4 py-2 rounded-lg bg-slate-200 dark:bg-[#232948] border border-slate-300 dark:border-[#323b67] text-xs font-mono text-center w-32"
+                  >
+                    Input Embeddings
+                  </div>
+                  <!-- Arrow -->
+                  <div
+                    class="absolute top-8 left-1/2 -translate-x-1/2 w-[1px] h-8 bg-slate-400 dark:bg-slate-600"
+                  ></div>
+                  <!-- Multi-Head Attention -->
+                  <div
+                    class="absolute top-16 left-1/2 -translate-x-1/2 w-48 py-3 rounded-lg bg-primary/10 border border-primary/30 text-primary text-xs font-bold text-center"
+                  >
+                    Multi-Head Attention
+                  </div>
+                  <!-- Add & Norm -->
+                  <div
+                    class="absolute top-28 left-1/2 -translate-x-1/2 w-[1px] h-4 bg-slate-400 dark:bg-slate-600"
+                  ></div>
+                  <div
+                    class="absolute top-32 left-1/2 -translate-x-1/2 w-40 py-2 rounded-lg bg-slate-200 dark:bg-[#232948] border border-slate-300 dark:border-[#323b67] text-[10px] text-center text-slate-500 dark:text-slate-400"
+                  >
+                    Add &amp; Norm
+                  </div>
+                  <!-- Feed Forward -->
+                  <div
+                    class="absolute top-40 left-1/2 -translate-x-1/2 w-[1px] h-4 bg-slate-400 dark:bg-slate-600"
+                  ></div>
+                  <div
+                    class="absolute top-44 left-1/2 -translate-x-1/2 w-48 py-3 rounded-lg bg-blue-500/10 border border-blue-500/30 text-blue-500 text-xs font-bold text-center"
+                  >
+                    Feed Forward
+                  </div>
+                  <!-- Output -->
+                  <div
+                    class="absolute top-56 left-1/2 -translate-x-1/2 w-[1px] h-8 bg-slate-400 dark:bg-slate-600"
+                  ></div>
+                </div>
+              </div>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-3">
+              The Mechanism of Attention
+            </h3>
+            <p
+              class="text-base leading-relaxed text-slate-600 dark:text-slate-400 mb-4"
+            >
+              Attention allows the model to weigh the importance of different
+              words in a sentence relative to each other, regardless of their
+              distance. This capability is crucial for understanding context,
+              nuance, and long-range dependencies in text.
+            </p>
+          </section>
+          <!-- Training -->
+          <section class="mb-16 scroll-mt-28" id="training">
+            <h2 class="text-2xl font-bold mb-6 flex items-center gap-3">
+              <span
+                class="flex items-center justify-center size-8 rounded bg-primary/10 text-primary text-sm font-bold"
+                >03</span
+              >
+              Training Methodologies
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+              <div
+                class="p-6 rounded-xl bg-slate-100 dark:bg-[#181b2c] border border-transparent hover:border-slate-300 dark:hover:border-slate-600 transition-colors group"
+              >
+                <div
+                  class="size-10 rounded-lg bg-blue-100 dark:bg-blue-900/30 text-primary flex items-center justify-center mb-4 group-hover:scale-110 transition-transform"
+                >
+                  <span class="material-symbols-outlined">library_books</span>
+                </div>
+                <h3
+                  class="text-lg font-bold mb-2 text-slate-900 dark:text-white"
+                >
+                  Pre-training
+                </h3>
+                <p
+                  class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed"
+                >
+                  Self-supervised learning on vast corpora of text data. The
+                  model learns to predict the next token in a sequence,
+                  effectively learning grammar, facts about the world, and some
+                  reasoning abilities.
+                </p>
+              </div>
+              <div
+                class="p-6 rounded-xl bg-slate-100 dark:bg-[#181b2c] border border-transparent hover:border-slate-300 dark:hover:border-slate-600 transition-colors group"
+              >
+                <div
+                  class="size-10 rounded-lg bg-purple-100 dark:bg-purple-900/30 text-purple-500 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform"
+                >
+                  <span class="material-symbols-outlined">tune</span>
+                </div>
+                <h3
+                  class="text-lg font-bold mb-2 text-slate-900 dark:text-white"
+                >
+                  Fine-tuning (RLHF)
+                </h3>
+                <p
+                  class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed"
+                >
+                  Reinforcement Learning from Human Feedback aligns the model's
+                  outputs with human intent, reducing harmful outputs and
+                  improving helpfulness and safety.
+                </p>
+              </div>
+            </div>
+          </section>
+          <!-- Key Challenges -->
+          <section class="mb-16 scroll-mt-28" id="challenges">
+            <h2 class="text-2xl font-bold mb-6 flex items-center gap-3">
+              <span
+                class="flex items-center justify-center size-8 rounded bg-primary/10 text-primary text-sm font-bold"
+                >04</span
+              >
+              Key Challenges
+            </h2>
+            <div
+              class="overflow-hidden rounded-lg border border-slate-200 dark:border-[#323b67] bg-white dark:bg-[#111422]"
+            >
+              <table class="w-full text-left border-collapse">
+                <thead>
+                  <tr
+                    class="bg-slate-50 dark:bg-[#191e33] border-b border-slate-200 dark:border-[#323b67]"
+                  >
+                    <th
+                      class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400"
+                    >
+                      Challenge Area
+                    </th>
+                    <th
+                      class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400"
+                    >
+                      Description
+                    </th>
+                    <th
+                      class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 text-right"
+                    >
+                      Severity
+                    </th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-200 dark:divide-[#323b67]">
+                  <tr>
+                    <td
+                      class="px-6 py-4 font-medium text-slate-900 dark:text-white"
+                    >
+                      Hallucination
+                    </td>
+                    <td
+                      class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400"
+                    >
+                      Generating plausible sounding but factually incorrect
+                      information.
+                    </td>
+                    <td class="px-6 py-4 text-right">
+                      <span
+                        class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300"
+                        >High</span
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td
+                      class="px-6 py-4 font-medium text-slate-900 dark:text-white"
+                    >
+                      Bias &amp; Safety
+                    </td>
+                    <td
+                      class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400"
+                    >
+                      Reflecting societal biases present in training data or
+                      producing harmful content.
+                    </td>
+                    <td class="px-6 py-4 text-right">
+                      <span
+                        class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-300"
+                        >High</span
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td
+                      class="px-6 py-4 font-medium text-slate-900 dark:text-white"
+                    >
+                      Compute Cost
+                    </td>
+                    <td
+                      class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400"
+                    >
+                      Extreme energy and hardware requirements for training and
+                      inference.
+                    </td>
+                    <td class="px-6 py-4 text-right">
+                      <span
+                        class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300"
+                        >Medium</span
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td
+                      class="px-6 py-4 font-medium text-slate-900 dark:text-white"
+                    >
+                      Context Window
+                    </td>
+                    <td
+                      class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400"
+                    >
+                      Limitations on the amount of text the model can process at
+                      once.
+                    </td>
+                    <td class="px-6 py-4 text-right">
+                      <span
+                        class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300"
+                        >Low</span
+                      >
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+          <!-- Future Directions -->
+          <section class="mb-16 scroll-mt-28" id="future">
+            <h2 class="text-2xl font-bold mb-6 flex items-center gap-3">
+              <span
+                class="flex items-center justify-center size-8 rounded bg-primary/10 text-primary text-sm font-bold"
+                >05</span
+              >
+              Future Directions
+            </h2>
+            <p
+              class="text-base leading-relaxed text-slate-600 dark:text-slate-400 mb-6"
+            >
+              The field is moving rapidly towards
+              <strong>multi-modal models</strong> capable of processing text,
+              images, audio, and video simultaneously. Furthermore, research
+              into smaller, more efficient models (SLMs) aims to democratize
+              access to these technologies, allowing them to run on consumer
+              hardware.
+            </p>
+            <ul class="space-y-4">
+              <li
+                class="flex gap-4 items-start p-4 rounded-lg bg-slate-50 dark:bg-[#181b2c] border border-transparent hover:border-slate-200 dark:hover:border-[#323b67] transition-all"
+              >
+                <span class="material-symbols-outlined text-primary mt-0.5"
+                  >rocket_launch</span
+                >
+                <div>
+                  <h4 class="font-bold text-slate-900 dark:text-white text-sm">
+                    Towards AGI
+                  </h4>
+                  <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">
+                    Pursuit of Artificial General Intelligence through
+                    reasoning-heavy architectures.
+                  </p>
+                </div>
+              </li>
+              <li
+                class="flex gap-4 items-start p-4 rounded-lg bg-slate-50 dark:bg-[#181b2c] border border-transparent hover:border-slate-200 dark:hover:border-[#323b67] transition-all"
+              >
+                <span class="material-symbols-outlined text-primary mt-0.5"
+                  >memory</span
+                >
+                <div>
+                  <h4 class="font-bold text-slate-900 dark:text-white text-sm">
+                    Efficient Inference
+                  </h4>
+                  <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">
+                    Quantization and sparse attention mechanisms to reduce
+                    latency and cost.
+                  </p>
+                </div>
+              </li>
+            </ul>
+          </section>
+          <!-- References/Footer specific to article -->
+          <div class="pt-8 border-t border-slate-200 dark:border-[#232948]">
+            <h3
+              class="text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-4"
+            >
+              References
+            </h3>
+            <ol
+              class="list-decimal list-inside space-y-2 text-xs text-slate-500 dark:text-slate-500"
+            >
+              <li>
+                Vaswani, A., et al. (2017). "Attention Is All You Need."
+                Advances in Neural Information Processing Systems.
+              </li>
+              <li>
+                Brown, T. B., et al. (2020). "Language Models are Few-Shot
+                Learners." arXiv preprint arXiv:2005.14165.
+              </li>
+              <li>
+                Ouyang, L., et al. (2022). "Training language models to follow
+                instructions with human feedback." arXiv preprint
+                arXiv:2203.02155.
+              </li>
+            </ol>
+          </div>
+        </article>
+      </div>
+    </main>
+    <!-- Floating Action Button -->
+    <button
+      class="fixed bottom-8 right-8 z-40 size-12 rounded-full bg-primary text-white shadow-xl hover:bg-primary/90 flex items-center justify-center transition-all hover:-translate-y-1"
+      onclick="window.scrollTo({top: 0, behavior: 'smooth'});"
+    >
+      <span class="material-symbols-outlined">arrow_upward</span>
+    </button>
+    <!-- Footer -->
+    <footer
+      class="mt-auto border-t border-slate-200 dark:border-[#232948] bg-slate-100 dark:bg-[#0b0e17] py-12"
+    >
+      <div
+        class="layout-container px-4 sm:px-10 max-w-[1200px] mx-auto flex flex-col md:flex-row justify-between items-center gap-6"
+      >
+        <div class="flex items-center gap-2 text-slate-900 dark:text-white">
+          <div
+            class="size-6 bg-primary rounded-md flex items-center justify-center text-white"
+          >
+            <span class="material-symbols-outlined !text-[16px]">science</span>
+          </div>
+          <span class="font-bold text-sm">AI Research Hub</span>
+        </div>
+        <div class="flex gap-6 text-sm text-slate-500 dark:text-[#929bc9]">
+          <a class="hover:text-primary transition-colors" href="#"
+            >Privacy Policy</a
+          >
+          <a class="hover:text-primary transition-colors" href="#"
+            >Terms of Service</a
+          >
+          <a class="hover:text-primary transition-colors" href="#">Contact</a>
+        </div>
+        <p class="text-xs text-slate-400 dark:text-slate-600">
+          © 2023 AI Research Hub. All rights reserved.
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

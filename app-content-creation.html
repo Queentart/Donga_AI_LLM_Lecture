@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Content Creation: AI's Role in Generating Diverse Media</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#1337ec",
+              "background-light": "#f6f6f8",
+              "background-dark": "#101322",
+              "card-dark": "#1a1d2d",
+              "card-border": "#232948",
+              "text-secondary": "#929bc9",
+            },
+            fontFamily: {
+              display: ["Space Grotesk", "sans-serif"],
+              body: ["Noto Sans", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body
+    class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white antialiased selection:bg-primary selection:text-white"
+  >
+    <div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+      <!-- Top Navigation -->
+      <header
+        class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-[#232948] bg-white/80 dark:bg-[#111422]/90 backdrop-blur-md px-4 py-3 md:px-10"
+      >
+        <div class="flex items-center gap-4 text-slate-900 dark:text-white">
+          <div class="size-8 text-primary">
+            <svg
+              class="w-full h-full"
+              fill="none"
+              viewbox="0 0 48 48"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                clip-rule="evenodd"
+                d="M39.475 21.6262C40.358 21.4363 40.6863 21.5589 40.7581 21.5934C40.7876 21.655 40.8547 21.857 40.8082 22.3336C40.7408 23.0255 40.4502 24.0046 39.8572 25.2301C38.6799 27.6631 36.5085 30.6631 33.5858 33.5858C30.6631 36.5085 27.6632 38.6799 25.2301 39.8572C24.0046 40.4502 23.0255 40.7407 22.3336 40.8082C21.8571 40.8547 21.6551 40.7875 21.5934 40.7581C21.5589 40.6863 21.4363 40.358 21.6262 39.475C21.8562 38.4054 22.4689 36.9657 23.5038 35.2817C24.7575 33.2417 26.5497 30.9744 28.7621 28.762C30.9744 26.5497 33.2417 24.7574 35.2817 23.5037C36.9657 22.4689 38.4054 21.8562 39.475 21.6262ZM4.41189 29.2403L18.7597 43.5881C19.8813 44.7097 21.4027 44.9179 22.7217 44.7893C24.0585 44.659 25.5148 44.1631 26.9723 43.4579C29.9052 42.0387 33.2618 39.5667 36.4142 36.4142C39.5667 33.2618 42.0387 29.9052 43.4579 26.9723C44.1631 25.5148 44.659 24.0585 44.7893 22.7217C44.9179 21.4027 44.7097 19.8813 43.5881 18.7597L29.2403 4.41187C27.8527 3.02428 25.8765 3.02573 24.2861 3.36776C22.6081 3.72863 20.7334 4.58419 18.8396 5.74801C16.4978 7.18716 13.9881 9.18353 11.5858 11.5858C9.18354 13.988 7.18717 16.4978 5.74802 18.8396C4.58421 20.7334 3.72865 22.6081 3.36778 24.2861C3.02574 25.8765 3.02429 27.8527 4.41189 29.2403Z"
+                fill="currentColor"
+                fill-rule="evenodd"
+              ></path>
+            </svg>
+          </div>
+          <h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">
+            GenAI Hub
+          </h2>
+        </div>
+        <div class="flex flex-1 justify-end gap-8">
+          <div class="hidden md:flex items-center gap-9">
+            <a
+              class="text-slate-600 dark:text-white text-sm font-medium hover:text-primary transition-colors"
+              href="#"
+              >Home</a
+            >
+            <a
+              class="text-slate-600 dark:text-white text-sm font-medium hover:text-primary transition-colors"
+              href="#"
+              >Concepts</a
+            >
+            <a
+              class="text-slate-600 dark:text-white text-sm font-medium hover:text-primary transition-colors"
+              href="#"
+              >Tools</a
+            >
+            <a
+              class="text-slate-600 dark:text-white text-sm font-medium hover:text-primary transition-colors"
+              href="#"
+              >Pricing</a
+            >
+          </div>
+          <div class="flex gap-2">
+            <button
+              class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary hover:bg-primary/90 text-white text-sm font-bold transition-all"
+            >
+              <span class="truncate">Sign Up</span>
+            </button>
+            <button
+              class="hidden sm:flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-slate-200 dark:bg-[#232948] text-slate-900 dark:text-white text-sm font-bold hover:bg-slate-300 dark:hover:bg-[#2f365f] transition-all"
+            >
+              <span class="truncate">Login</span>
+            </button>
+          </div>
+        </div>
+      </header>
+      <!-- Hero Section -->
+      <div
+        class="w-full bg-background-light dark:bg-background-dark border-b border-slate-200 dark:border-[#232948]"
+      >
+        <div
+          class="@container max-w-[1280px] mx-auto px-4 md:px-10 lg:px-40 py-12 md:py-20"
+        >
+          <div
+            class="flex flex-col-reverse gap-8 @[864px]:flex-row items-center"
+          >
+            <div class="flex flex-col gap-6 flex-1 text-left">
+              <div class="flex flex-col gap-4">
+                <span
+                  class="text-primary font-bold text-sm tracking-widest uppercase"
+                  >Generative Media</span
+                >
+                <h1
+                  class="text-slate-900 dark:text-white text-4xl font-black leading-tight tracking-[-0.033em] md:text-5xl lg:text-6xl"
+                >
+                  Content Creation: AI's Role in Generating Diverse Media
+                </h1>
+                <h2
+                  class="text-slate-600 dark:text-[#929bc9] text-lg font-normal leading-relaxed max-w-xl"
+                >
+                  Discover how generative AI is fundamentally reshaping the
+                  creative process across text, imagery, audio, and video,
+                  enabling creators to move from idea to execution instantly.
+                </h2>
+              </div>
+              <div class="flex gap-4 pt-4">
+                <button
+                  class="flex h-12 px-6 items-center justify-center rounded-lg bg-primary text-white text-base font-bold hover:bg-primary/90 transition-all shadow-lg shadow-primary/25"
+                >
+                  Start Creating
+                </button>
+                <button
+                  class="flex h-12 px-6 items-center justify-center rounded-lg border border-slate-300 dark:border-[#232948] text-slate-900 dark:text-white text-base font-bold hover:bg-slate-100 dark:hover:bg-[#1a1d2d] transition-all"
+                >
+                  View Demo
+                </button>
+              </div>
+            </div>
+            <div
+              class="w-full flex-1 aspect-square md:aspect-video rounded-2xl overflow-hidden relative shadow-2xl shadow-primary/10 group"
+            >
+              <div
+                class="absolute inset-0 bg-gradient-to-tr from-primary/40 to-transparent mix-blend-overlay z-10"
+              ></div>
+              <div
+                class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+                data-alt="Abstract colorful digital wave patterns representing AI creativity"
+                style="
+                  background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAWrKxBtbcVzGY12sZN5nL7vYnVCZgLTgsYgHRUyr7XVzGQ3ZalcHQXvMYWZN3Lg2y4QSWi1ECQZN47Eyqbq97faB854Zw-SiuJSeifNn7UpVkuGR29jSF8HqOerSYrPvjVxbWuZkOPRtw9nBkEonCjEOFR_1mKD22cFQ9qRuYQVW6TCLe9eSFjrwwOkgGxwI89UJRU3nTRz0zGTr6-t7RjV07Gkkw0IyL0crHTKIlTPG6kbPoSWCN5-T5ah1ENe_CKsEEo871O49s');
+                "
+              ></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Main Layout: Sidebar + Content -->
+      <div
+        class="flex max-w-[1280px] w-full mx-auto px-4 md:px-10 lg:px-40 py-10 gap-10"
+      >
+        <!-- Sidebar Navigation (Sticky) -->
+        <aside class="hidden lg:flex w-64 flex-col shrink-0">
+          <div class="sticky top-24 flex flex-col gap-8">
+            <!-- Table of Contents -->
+            <div class="flex flex-col gap-4">
+              <div
+                class="flex flex-col pb-2 border-b border-slate-200 dark:border-[#232948]"
+              >
+                <h3 class="text-slate-900 dark:text-white text-lg font-bold">
+                  On this page
+                </h3>
+              </div>
+              <nav class="flex flex-col gap-1">
+                <a
+                  class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/10 text-primary transition-all group"
+                  href="#overview"
+                >
+                  <span class="material-symbols-outlined text-[20px]"
+                    >info</span
+                  >
+                  <span class="text-sm font-medium">Overview</span>
+                </a>
+                <a
+                  class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-500 dark:text-[#929bc9] hover:bg-slate-100 dark:hover:bg-[#1a1d2d] hover:text-slate-900 dark:hover:text-white transition-all group"
+                  href="#mediums"
+                >
+                  <span
+                    class="material-symbols-outlined text-[20px] group-hover:text-primary"
+                    >brush</span
+                  >
+                  <span class="text-sm font-medium">Transforming Mediums</span>
+                </a>
+                <a
+                  class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-500 dark:text-[#929bc9] hover:bg-slate-100 dark:hover:bg-[#1a1d2d] hover:text-slate-900 dark:hover:text-white transition-all group"
+                  href="#impact"
+                >
+                  <span
+                    class="material-symbols-outlined text-[20px] group-hover:text-primary"
+                    >bolt</span
+                  >
+                  <span class="text-sm font-medium">Impact &amp; Benefits</span>
+                </a>
+                <a
+                  class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-500 dark:text-[#929bc9] hover:bg-slate-100 dark:hover:bg-[#1a1d2d] hover:text-slate-900 dark:hover:text-white transition-all group"
+                  href="#challenges"
+                >
+                  <span
+                    class="material-symbols-outlined text-[20px] group-hover:text-primary"
+                    >warning</span
+                  >
+                  <span class="text-sm font-medium">Challenges</span>
+                </a>
+                <a
+                  class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-500 dark:text-[#929bc9] hover:bg-slate-100 dark:hover:bg-[#1a1d2d] hover:text-slate-900 dark:hover:text-white transition-all group"
+                  href="#examples"
+                >
+                  <span
+                    class="material-symbols-outlined text-[20px] group-hover:text-primary"
+                    >domain</span
+                  >
+                  <span class="text-sm font-medium">Real-World Examples</span>
+                </a>
+              </nav>
+            </div>
+            <!-- Promo Card -->
+            <div
+              class="rounded-xl bg-slate-100 dark:bg-[#1a1d2d] p-5 border border-slate-200 dark:border-[#232948]"
+            >
+              <div
+                class="mb-3 size-10 rounded-full bg-primary/20 flex items-center justify-center text-primary"
+              >
+                <span class="material-symbols-outlined">auto_awesome</span>
+              </div>
+              <h4 class="text-slate-900 dark:text-white font-bold mb-2">
+                Ready to create?
+              </h4>
+              <p class="text-xs text-slate-500 dark:text-[#929bc9] mb-4">
+                Access our suite of generative tools today and start building.
+              </p>
+              <button
+                class="w-full py-2 bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-xs font-bold rounded-lg hover:opacity-90 transition-opacity"
+              >
+                Get Started
+              </button>
+            </div>
+          </div>
+        </aside>
+        <!-- Main Content Area -->
+        <main class="flex-1 min-w-0 flex flex-col gap-16">
+          <!-- Overview Section -->
+          <section class="scroll-mt-32" id="overview">
+            <div class="mb-6">
+              <span
+                class="text-primary font-bold tracking-wider text-xs uppercase mb-2 block"
+                >Introduction</span
+              >
+              <h2 class="text-3xl font-bold text-slate-900 dark:text-white">
+                The Landscape of Generative Media
+              </h2>
+            </div>
+            <div
+              class="prose prose-lg dark:prose-invert text-slate-600 dark:text-[#929bc9] leading-relaxed"
+            >
+              <p class="mb-4">
+                Generative AI has evolved from experimental research into a
+                robust engine for creative expression. Unlike traditional AI,
+                which focuses on analysis and classification, generative models
+                are designed to create new data instances that resemble your
+                training data.
+              </p>
+              <p>
+                This shift empowers creators to generate high-fidelity text,
+                images, audio, and video from simple natural language prompts.
+                By lowering the barrier to entry for complex media production,
+                these tools are democratizing creativity and allowing for rapid
+                prototyping and diverse content scaling.
+              </p>
+            </div>
+          </section>
+          <!-- Transforming Mediums Grid -->
+          <section class="scroll-mt-32" id="mediums">
+            <div class="mb-8 flex items-center justify-between">
+              <h2 class="text-3xl font-bold text-slate-900 dark:text-white">
+                Transforming Mediums
+              </h2>
+              <a class="text-primary text-sm font-bold hover:underline" href="#"
+                >View all tools →</a
+              >
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <!-- Card 1 -->
+              <div
+                class="group relative overflow-hidden rounded-xl bg-white dark:bg-[#1a1d2d] border border-slate-200 dark:border-[#232948] p-6 hover:border-primary/50 transition-colors"
+              >
+                <div
+                  class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity"
+                >
+                  <span
+                    class="material-symbols-outlined text-[120px] text-primary -mr-8 -mt-8"
+                    >description</span
+                  >
+                </div>
+                <div class="relative z-10 flex flex-col h-full">
+                  <div
+                    class="size-12 rounded-lg bg-blue-50 dark:bg-[#232948] flex items-center justify-center text-primary mb-4"
+                  >
+                    <span class="material-symbols-outlined">edit_note</span>
+                  </div>
+                  <h3
+                    class="text-xl font-bold text-slate-900 dark:text-white mb-2"
+                  >
+                    Written Content
+                  </h3>
+                  <p
+                    class="text-sm text-slate-600 dark:text-[#929bc9] mb-4 flex-grow"
+                  >
+                    From long-form articles to catchy marketing copy, LLMs can
+                    draft, edit, and translate text with human-like nuance.
+                  </p>
+                  <div class="flex gap-2">
+                    <span
+                      class="px-2 py-1 rounded bg-slate-100 dark:bg-[#111422] text-xs font-medium text-slate-500 dark:text-slate-400"
+                      >Copywriting</span
+                    >
+                    <span
+                      class="px-2 py-1 rounded bg-slate-100 dark:bg-[#111422] text-xs font-medium text-slate-500 dark:text-slate-400"
+                      >Summarization</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <!-- Card 2 -->
+              <div
+                class="group relative overflow-hidden rounded-xl bg-white dark:bg-[#1a1d2d] border border-slate-200 dark:border-[#232948] p-6 hover:border-primary/50 transition-colors"
+              >
+                <div
+                  class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity"
+                >
+                  <span
+                    class="material-symbols-outlined text-[120px] text-primary -mr-8 -mt-8"
+                    >image</span
+                  >
+                </div>
+                <div class="relative z-10 flex flex-col h-full">
+                  <div
+                    class="size-12 rounded-lg bg-purple-50 dark:bg-[#232948] flex items-center justify-center text-purple-500 dark:text-purple-400 mb-4"
+                  >
+                    <span class="material-symbols-outlined">palette</span>
+                  </div>
+                  <h3
+                    class="text-xl font-bold text-slate-900 dark:text-white mb-2"
+                  >
+                    Visual Arts
+                  </h3>
+                  <p
+                    class="text-sm text-slate-600 dark:text-[#929bc9] mb-4 flex-grow"
+                  >
+                    Diffusion models create stunning visuals from scratch,
+                    modify existing images, and generate assets for branding and
+                    UI.
+                  </p>
+                  <div class="flex gap-2">
+                    <span
+                      class="px-2 py-1 rounded bg-slate-100 dark:bg-[#111422] text-xs font-medium text-slate-500 dark:text-slate-400"
+                      >Logos</span
+                    >
+                    <span
+                      class="px-2 py-1 rounded bg-slate-100 dark:bg-[#111422] text-xs font-medium text-slate-500 dark:text-slate-400"
+                      >Illustrations</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <!-- Card 3 -->
+              <div
+                class="group relative overflow-hidden rounded-xl bg-white dark:bg-[#1a1d2d] border border-slate-200 dark:border-[#232948] p-6 hover:border-primary/50 transition-colors"
+              >
+                <div
+                  class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity"
+                >
+                  <span
+                    class="material-symbols-outlined text-[120px] text-primary -mr-8 -mt-8"
+                    >movie</span
+                  >
+                </div>
+                <div class="relative z-10 flex flex-col h-full">
+                  <div
+                    class="size-12 rounded-lg bg-red-50 dark:bg-[#232948] flex items-center justify-center text-red-500 dark:text-red-400 mb-4"
+                  >
+                    <span class="material-symbols-outlined">videocam</span>
+                  </div>
+                  <h3
+                    class="text-xl font-bold text-slate-900 dark:text-white mb-2"
+                  >
+                    Video Production
+                  </h3>
+                  <p
+                    class="text-sm text-slate-600 dark:text-[#929bc9] mb-4 flex-grow"
+                  >
+                    Generate short clips, animate static images, or automate
+                    video editing workflows to produce engaging content faster.
+                  </p>
+                  <div class="flex gap-2">
+                    <span
+                      class="px-2 py-1 rounded bg-slate-100 dark:bg-[#111422] text-xs font-medium text-slate-500 dark:text-slate-400"
+                      >Animation</span
+                    >
+                    <span
+                      class="px-2 py-1 rounded bg-slate-100 dark:bg-[#111422] text-xs font-medium text-slate-500 dark:text-slate-400"
+                      >Editing</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <!-- Card 4 -->
+              <div
+                class="group relative overflow-hidden rounded-xl bg-white dark:bg-[#1a1d2d] border border-slate-200 dark:border-[#232948] p-6 hover:border-primary/50 transition-colors"
+              >
+                <div
+                  class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity"
+                >
+                  <span
+                    class="material-symbols-outlined text-[120px] text-primary -mr-8 -mt-8"
+                    >graphic_eq</span
+                  >
+                </div>
+                <div class="relative z-10 flex flex-col h-full">
+                  <div
+                    class="size-12 rounded-lg bg-green-50 dark:bg-[#232948] flex items-center justify-center text-green-500 dark:text-green-400 mb-4"
+                  >
+                    <span class="material-symbols-outlined">music_note</span>
+                  </div>
+                  <h3
+                    class="text-xl font-bold text-slate-900 dark:text-white mb-2"
+                  >
+                    Audio &amp; Speech
+                  </h3>
+                  <p
+                    class="text-sm text-slate-600 dark:text-[#929bc9] mb-4 flex-grow"
+                  >
+                    Clone voices for dubbing, generate background music tracks,
+                    or enhance audio quality with AI-powered filters.
+                  </p>
+                  <div class="flex gap-2">
+                    <span
+                      class="px-2 py-1 rounded bg-slate-100 dark:bg-[#111422] text-xs font-medium text-slate-500 dark:text-slate-400"
+                      >TTS</span
+                    >
+                    <span
+                      class="px-2 py-1 rounded bg-slate-100 dark:bg-[#111422] text-xs font-medium text-slate-500 dark:text-slate-400"
+                      >Soundscapes</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <!-- Impact & Challenges -->
+          <section class="scroll-mt-32" id="impact">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              <!-- Benefits -->
+              <div class="flex flex-col gap-6">
+                <h3
+                  class="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-3"
+                >
+                  <span class="material-symbols-outlined text-green-500"
+                    >trending_up</span
+                  >
+                  Key Benefits
+                </h3>
+                <div class="flex flex-col gap-4">
+                  <div
+                    class="flex gap-4 items-start p-4 rounded-lg bg-green-50/50 dark:bg-[#1a1d2d] border border-green-100 dark:border-green-900/30"
+                  >
+                    <div class="mt-1 text-green-600 dark:text-green-400">
+                      <span class="material-symbols-outlined">speed</span>
+                    </div>
+                    <div>
+                      <h4 class="font-bold text-slate-900 dark:text-white">
+                        Unprecedented Speed
+                      </h4>
+                      <p
+                        class="text-sm text-slate-600 dark:text-[#929bc9] mt-1"
+                      >
+                        Drastically reduce time-to-market by generating drafts
+                        and assets in seconds rather than days.
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    class="flex gap-4 items-start p-4 rounded-lg bg-green-50/50 dark:bg-[#1a1d2d] border border-green-100 dark:border-green-900/30"
+                  >
+                    <div class="mt-1 text-green-600 dark:text-green-400">
+                      <span class="material-symbols-outlined"
+                        >all_inclusive</span
+                      >
+                    </div>
+                    <div>
+                      <h4 class="font-bold text-slate-900 dark:text-white">
+                        Infinite Scale
+                      </h4>
+                      <p
+                        class="text-sm text-slate-600 dark:text-[#929bc9] mt-1"
+                      >
+                        Create thousands of personalized content variations for
+                        different audience segments effortlessly.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Challenges -->
+              <div class="flex flex-col gap-6 scroll-mt-32" id="challenges">
+                <h3
+                  class="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-3"
+                >
+                  <span class="material-symbols-outlined text-orange-500"
+                    >warning_amber</span
+                  >
+                  Core Challenges
+                </h3>
+                <div class="flex flex-col gap-4">
+                  <div
+                    class="flex gap-4 items-start p-4 rounded-lg bg-orange-50/50 dark:bg-[#1a1d2d] border border-orange-100 dark:border-orange-900/30"
+                  >
+                    <div class="mt-1 text-orange-600 dark:text-orange-400">
+                      <span class="material-symbols-outlined">gavel</span>
+                    </div>
+                    <div>
+                      <h4 class="font-bold text-slate-900 dark:text-white">
+                        Copyright &amp; Ethics
+                      </h4>
+                      <p
+                        class="text-sm text-slate-600 dark:text-[#929bc9] mt-1"
+                      >
+                        Navigating the gray areas of IP ownership and ensuring
+                        training data is sourced ethically.
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    class="flex gap-4 items-start p-4 rounded-lg bg-orange-50/50 dark:bg-[#1a1d2d] border border-orange-100 dark:border-orange-900/30"
+                  >
+                    <div class="mt-1 text-orange-600 dark:text-orange-400">
+                      <span class="material-symbols-outlined"
+                        >psychology_alt</span
+                      >
+                    </div>
+                    <div>
+                      <h4 class="font-bold text-slate-900 dark:text-white">
+                        Accuracy &amp; Bias
+                      </h4>
+                      <p
+                        class="text-sm text-slate-600 dark:text-[#929bc9] mt-1"
+                      >
+                        Mitigating "hallucinations" where models invent facts,
+                        and addressing inherent dataset biases.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <!-- Real World Examples -->
+          <section class="scroll-mt-32 pb-20" id="examples">
+            <h2 class="text-3xl font-bold text-slate-900 dark:text-white mb-8">
+              Real-World Examples
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <!-- Example 1 -->
+              <div
+                class="flex flex-col rounded-xl overflow-hidden bg-white dark:bg-[#1a1d2d] border border-slate-200 dark:border-[#232948] shadow-sm"
+              >
+                <div
+                  class="h-40 bg-cover bg-center"
+                  data-alt="Modern marketing team working with dashboard screens"
+                  style="
+                    background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBcKYT4ktderBeV1oIph6C6v_oU-GURRX48COMhw0gxQSpxBBjl31v6rxJa6cf78j6p0nOutGhJlAeh-yGmYMjxFQ5RMdKBEvyaqtM8TAkY_y-7st_mGIy51uT3He2J8G0JyBZown4rEbMvbFQRoMVK1dT1VOx-iJs8JaMrtOQWHtOUFc22-egxP0P4oSu0gdT0ohdtYzEq4Z8vj2CdM64Av174zVcUr89HVii7roufcANJJKZ0kcAlgmQTXK8oMlWsFAxjE2n7n2U');
+                  "
+                ></div>
+                <div class="p-5">
+                  <div
+                    class="text-xs font-bold text-primary mb-2 uppercase tracking-wide"
+                  >
+                    Marketing
+                  </div>
+                  <h4
+                    class="text-lg font-bold text-slate-900 dark:text-white mb-2"
+                  >
+                    Automated Ad Copy
+                  </h4>
+                  <p class="text-sm text-slate-600 dark:text-[#929bc9]">
+                    A leading agency used GenAI to produce 500 unique ad
+                    variations, increasing CTR by 150%.
+                  </p>
+                </div>
+              </div>
+              <!-- Example 2 -->
+              <div
+                class="flex flex-col rounded-xl overflow-hidden bg-white dark:bg-[#1a1d2d] border border-slate-200 dark:border-[#232948] shadow-sm"
+              >
+                <div
+                  class="h-40 bg-cover bg-center"
+                  data-alt="Futuristic cyber security lock concept"
+                  style="
+                    background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD5F9q-Ks6C3CQSn9TpqmQ1B04HynKOvkdIyZ0ouU42W-vmFe1-7mt01En56fnZrwOovWToYmrE57M9Xz2aw6F8SmjQ_7-gMEkfL8Ua6dS9mA4d3IN3-MveLUvsRWFhx6SnRUsTSnXrJvRt5mFCIMG7hGXqjGE9aT6SWKc39IErV-Z7CRt0MIvLKWRnn1ts_XlSx3xhKzQXXQNzal4annaatIfFrCUoOM3GL_MW-6hf8q_2lSmXwhP4wePeLQ-fstZuwhyuiSlHlek');
+                  "
+                ></div>
+                <div class="p-5">
+                  <div
+                    class="text-xs font-bold text-primary mb-2 uppercase tracking-wide"
+                  >
+                    Gaming
+                  </div>
+                  <h4
+                    class="text-lg font-bold text-slate-900 dark:text-white mb-2"
+                  >
+                    Infinite Assets
+                  </h4>
+                  <p class="text-sm text-slate-600 dark:text-[#929bc9]">
+                    Indie developers generated 10,000 unique in-game textures
+                    for a procedural world on a shoestring budget.
+                  </p>
+                </div>
+              </div>
+              <!-- Example 3 -->
+              <div
+                class="flex flex-col rounded-xl overflow-hidden bg-white dark:bg-[#1a1d2d] border border-slate-200 dark:border-[#232948] shadow-sm"
+              >
+                <div
+                  class="h-40 bg-cover bg-center"
+                  data-alt="Digital tablet displaying e-learning content"
+                  style="
+                    background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAKV0pPXN5del8jNrHdvgzppUZIElQ2PhF2PHfO-k6L5bq7GWPfsX-qNULCQFrvrJS49wwxNkM8Pmfqise3so4mUh6fxvHOCfQW8UrvOn41UoNm_0l2ogb2b0wfgLsakD8PkwGrwP2WSqgqEl2dTx3lahcKeyFZ7CwlUQ0PfSf9BNGBJ27s1kX7J6U5yrB5tziyMxwh02Jnzhy2GZVDa6gavqJ4xaeM9aE8r79T8c2Sfw5_3UbMLWfat6D3Hi_jkZkCaoMnSwc4EaI');
+                  "
+                ></div>
+                <div class="p-5">
+                  <div
+                    class="text-xs font-bold text-primary mb-2 uppercase tracking-wide"
+                  >
+                    Education
+                  </div>
+                  <h4
+                    class="text-lg font-bold text-slate-900 dark:text-white mb-2"
+                  >
+                    Personalized Tutors
+                  </h4>
+                  <p class="text-sm text-slate-600 dark:text-[#929bc9]">
+                    EdTech platforms creating custom lesson plans and quizzes
+                    instantly tailored to each student's level.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+        </main>
+      </div>
+      <!-- Footer -->
+      <footer
+        class="border-t border-slate-200 dark:border-[#232948] bg-white dark:bg-[#111422] py-10 px-4 md:px-10 lg:px-40"
+      >
+        <div
+          class="max-w-[1280px] mx-auto flex flex-col md:flex-row justify-between items-center gap-6"
+        >
+          <div class="flex items-center gap-2 text-slate-900 dark:text-white">
+            <div class="size-6 text-primary">
+              <svg
+                class="w-full h-full"
+                fill="none"
+                viewbox="0 0 48 48"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="M39.475 21.6262C40.358 21.4363 40.6863 21.5589 40.7581 21.5934C40.7876 21.655 40.8547 21.857 40.8082 22.3336C40.7408 23.0255 40.4502 24.0046 39.8572 25.2301C38.6799 27.6631 36.5085 30.6631 33.5858 33.5858C30.6631 36.5085 27.6632 38.6799 25.2301 39.8572C24.0046 40.4502 23.0255 40.7407 22.3336 40.8082C21.8571 40.8547 21.6551 40.7875 21.5934 40.7581C21.5589 40.6863 21.4363 40.358 21.6262 39.475C21.8562 38.4054 22.4689 36.9657 23.5038 35.2817C24.7575 33.2417 26.5497 30.9744 28.7621 28.762C30.9744 26.5497 33.2417 24.7574 35.2817 23.5037C36.9657 22.4689 38.4054 21.8562 39.475 21.6262ZM4.41189 29.2403L18.7597 43.5881C19.8813 44.7097 21.4027 44.9179 22.7217 44.7893C24.0585 44.659 25.5148 44.1631 26.9723 43.4579C29.9052 42.0387 33.2618 39.5667 36.4142 36.4142C39.5667 33.2618 42.0387 29.9052 43.4579 26.9723C44.1631 25.5148 44.659 24.0585 44.7893 22.7217C44.9179 21.4027 44.7097 19.8813 43.5881 18.7597L29.2403 4.41187C27.8527 3.02428 25.8765 3.02573 24.2861 3.36776C22.6081 3.72863 20.7334 4.58419 18.8396 5.74801C16.4978 7.18716 13.9881 9.18353 11.5858 11.5858C9.18354 13.988 7.18717 16.4978 5.74802 18.8396C4.58421 20.7334 3.72865 22.6081 3.36778 24.2861C3.02574 25.8765 3.02429 27.8527 4.41189 29.2403Z"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                ></path>
+              </svg>
+            </div>
+            <span class="font-bold">GenAI Hub</span>
+          </div>
+          <div class="flex gap-6 text-sm text-slate-500 dark:text-[#929bc9]">
+            <a class="hover:text-primary" href="#">Privacy Policy</a>
+            <a class="hover:text-primary" href="#">Terms of Service</a>
+            <a class="hover:text-primary" href="#">Contact</a>
+          </div>
+          <div class="text-sm text-slate-500 dark:text-[#929bc9]">
+            © 2024 GenAI Hub. All rights reserved.
+          </div>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>ChatGPT - Model Details</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Noto+Sans:wght@400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#1337ec",
+              "background-light": "#f6f6f8",
+              "background-dark": "#101322",
+              "surface-dark": "#1a1d2d",
+              "border-dark": "#232948",
+            },
+            fontFamily: {
+              display: ["Space Grotesk", "sans-serif"],
+              body: ["Noto Sans", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      /* Custom scrollbar for webkit */
+      ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #101322;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #232948;
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #323b67;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display overflow-hidden"
+  >
+    <div class="flex h-screen w-full overflow-hidden">
+      <!-- Sidebar -->
+      <aside
+        class="hidden md:flex flex-col w-64 h-full border-r border-border-dark bg-background-dark flex-shrink-0"
+      >
+        <div class="p-6 flex items-center gap-3">
+          <div
+            class="bg-center bg-no-repeat bg-cover rounded-full size-8 bg-primary flex items-center justify-center text-white font-bold"
+            data-alt="AI Hub Logo"
+            style="
+              background-image: linear-gradient(
+                135deg,
+                #1337ec 0%,
+                #4facfe 100%
+              );
+            "
+          >
+            <span class="material-symbols-outlined text-lg">smart_toy</span>
+          </div>
+          <h1 class="text-white text-lg font-bold tracking-tight">AI Hub</h1>
+        </div>
+        <nav class="flex-1 overflow-y-auto px-4 py-2 space-y-2">
+          <a
+            class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#929bc9] hover:text-white hover:bg-surface-dark transition-colors"
+            href="#"
+          >
+            <span class="material-symbols-outlined">home</span>
+            <span class="text-sm font-medium">Overview</span>
+          </a>
+          <a
+            class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-surface-dark text-white shadow-sm ring-1 ring-white/5"
+            href="#"
+          >
+            <span class="material-symbols-outlined text-primary">layers</span>
+            <span class="text-sm font-medium">Models</span>
+          </a>
+          <a
+            class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#929bc9] hover:text-white hover:bg-surface-dark transition-colors"
+            href="#"
+          >
+            <span class="material-symbols-outlined">stadia_controller</span>
+            <span class="text-sm font-medium">Playground</span>
+          </a>
+          <a
+            class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#929bc9] hover:text-white hover:bg-surface-dark transition-colors"
+            href="#"
+          >
+            <span class="material-symbols-outlined">dataset</span>
+            <span class="text-sm font-medium">Datasets</span>
+          </a>
+          <div class="pt-4 pb-2">
+            <p
+              class="px-3 text-xs font-semibold text-[#565d88] uppercase tracking-wider"
+            >
+              Configuration
+            </p>
+          </div>
+          <a
+            class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#929bc9] hover:text-white hover:bg-surface-dark transition-colors"
+            href="#"
+          >
+            <span class="material-symbols-outlined">settings</span>
+            <span class="text-sm font-medium">Settings</span>
+          </a>
+          <a
+            class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#929bc9] hover:text-white hover:bg-surface-dark transition-colors"
+            href="#"
+          >
+            <span class="material-symbols-outlined">vpn_key</span>
+            <span class="text-sm font-medium">API Keys</span>
+          </a>
+        </nav>
+        <div class="p-4 border-t border-border-dark">
+          <div
+            class="flex items-center gap-3 p-2 rounded-lg hover:bg-surface-dark cursor-pointer transition-colors"
+          >
+            <div
+              class="size-8 rounded-full bg-gradient-to-tr from-purple-500 to-pink-500"
+              data-alt="User Avatar Gradient"
+            ></div>
+            <div class="flex flex-col">
+              <span class="text-sm font-medium text-white">Alex Morgan</span>
+              <span class="text-xs text-[#929bc9]">Pro Plan</span>
+            </div>
+          </div>
+        </div>
+      </aside>
+      <!-- Main Content Area -->
+      <main
+        class="flex-1 flex flex-col h-full overflow-hidden bg-background-light dark:bg-background-dark relative"
+      >
+        <!-- Top Navbar -->
+        <header
+          class="flex items-center justify-between border-b border-border-dark bg-background-dark/95 backdrop-blur-sm px-6 py-4 z-10 sticky top-0"
+        >
+          <div class="flex items-center gap-4 flex-1">
+            <!-- Mobile Menu Toggle -->
+            <button class="md:hidden text-white p-1">
+              <span class="material-symbols-outlined">menu</span>
+            </button>
+            <!-- Search Bar -->
+            <div class="relative w-full max-w-md hidden sm:block">
+              <div
+                class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-[#929bc9]"
+              >
+                <span class="material-symbols-outlined text-[20px]"
+                  >search</span
+                >
+              </div>
+              <input
+                class="block w-full rounded-lg border-none bg-surface-dark py-2 pl-10 pr-3 text-white placeholder-[#929bc9] focus:ring-1 focus:ring-primary sm:text-sm"
+                placeholder="Search models, datasets, users..."
+                type="text"
+              />
+            </div>
+          </div>
+          <div class="flex items-center gap-4">
+            <a
+              class="text-[#929bc9] hover:text-white text-sm font-medium hidden sm:block"
+              href="#"
+              >Docs</a
+            >
+            <a
+              class="text-[#929bc9] hover:text-white text-sm font-medium hidden sm:block"
+              href="#"
+              >Community</a
+            >
+            <button class="text-[#929bc9] hover:text-white">
+              <span class="material-symbols-outlined">notifications</span>
+            </button>
+          </div>
+        </header>
+        <!-- Scrollable Content -->
+        <div class="flex-1 overflow-y-auto p-4 md:p-8 lg:px-12">
+          <div class="max-w-6xl mx-auto space-y-8 pb-12">
+            <!-- Breadcrumbs -->
+            <nav class="flex items-center text-sm text-[#929bc9]">
+              <a class="hover:text-white transition-colors" href="#">Home</a>
+              <span class="mx-2">/</span>
+              <a class="hover:text-white transition-colors" href="#">Models</a>
+              <span class="mx-2">/</span>
+              <a class="hover:text-white transition-colors" href="#">LLMs</a>
+              <span class="mx-2">/</span>
+              <span class="text-white font-medium">ChatGPT</span>
+            </nav>
+            <!-- Profile Header -->
+            <div
+              class="bg-surface-dark border border-border-dark rounded-xl p-6 md:p-8"
+            >
+              <div class="flex flex-col md:flex-row gap-6 md:gap-8 items-start">
+                <div class="flex-shrink-0">
+                  <div
+                    class="size-24 md:size-32 rounded-xl bg-[#10a37f] flex items-center justify-center shadow-lg shadow-[#10a37f]/20"
+                    data-alt="ChatGPT Logo"
+                  >
+                    <svg
+                      class="w-16 h-16 text-white"
+                      fill="currentColor"
+                      viewbox="0 0 24 24"
+                    >
+                      <path
+                        d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729ZM12.7208 4.7937a4.103 4.103 0 0 1 3.5936 2.0526L12.3023 8.16l-1.0275-1.8546a.3331.3331 0 0 0-.0191-.0334l-1.5796-2.7933a4.0887 4.0887 0 0 1 3.0447-2.685ZM4.9855 7.2173a4.103 4.103 0 0 1 2.2173-3.665l.5042 3.8647a.3522.3522 0 0 0 .0191.0334l1.5891 2.8077-3.9295-2.2743a4.1125 4.1125 0 0 1-.4002-.7665ZM5.2811 17.514a4.103 4.103 0 0 1-.9562-4.1793L7.755 15.31l1.5939.923a.3522.3522 0 0 0 .0334.0191l3.1264 1.5463-4.5244 1.3465a4.0839 4.0839 0 0 1-2.7032-1.631ZM18.995 16.327a4.103 4.103 0 0 1-2.222 3.6603l-.4995-3.8647a.3331.3331 0 0 0-.019-.0334l-1.5939-2.803 3.9343 2.2696a4.1173 4.1173 0 0 1 .3953.7665Zm.5756-3.1303L16.4346 11.66l-1.5939-.923a.3283.3283 0 0 0-.0334-.019l-3.1311-1.5416 4.5292-1.3417a4.122 4.122 0 0 1 3.3647 5.3626ZM8.7836 8.3552l2.3077 4.1554 2.3029-4.1554 1.8356 1.0563-3.2684 5.9238a1.5271 1.5271 0 0 1-2.6477 0l-3.2636-5.9238 1.7335-1.0563Zm5.6335 11.4116a4.103 4.103 0 0 1-3.5841-2.0479l4.0025-1.3131 1.0323 1.8593a.3522.3522 0 0 0 .019.0334l1.5796 2.7886a4.0839 4.0839 0 0 1-3.0494 2.6797Z"
+                      ></path>
+                    </svg>
+                  </div>
+                </div>
+                <div class="flex-1 min-w-0">
+                  <div
+                    class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-2"
+                  >
+                    <h1
+                      class="text-3xl md:text-4xl font-bold text-white tracking-tight"
+                    >
+                      ChatGPT
+                    </h1>
+                    <div class="flex gap-2">
+                      <span
+                        class="px-3 py-1 rounded-full bg-green-500/20 text-green-400 text-xs font-bold uppercase tracking-wider border border-green-500/30"
+                        >Active</span
+                      >
+                      <span
+                        class="px-3 py-1 rounded-full bg-surface-dark text-[#929bc9] text-xs font-bold uppercase tracking-wider border border-border-dark"
+                        >v4.0</span
+                      >
+                    </div>
+                  </div>
+                  <h2 class="text-xl text-[#929bc9] font-medium mb-4">
+                    OpenAI's Conversational AI
+                  </h2>
+                  <p
+                    class="text-gray-400 text-base leading-relaxed max-w-2xl mb-6"
+                  >
+                    An advanced large language model trained by OpenAI, capable
+                    of understanding and generating human-like text based on
+                    context. It excels in tasks ranging from creative writing
+                    and technical documentation to complex problem-solving and
+                    code generation.
+                  </p>
+                  <div class="flex flex-wrap gap-3">
+                    <button
+                      class="bg-primary hover:bg-blue-600 text-white px-6 py-2.5 rounded-lg font-bold text-sm transition-colors flex items-center gap-2"
+                    >
+                      <span>Try Now</span>
+                      <span class="material-symbols-outlined text-lg"
+                        >arrow_outward</span
+                      >
+                    </button>
+                    <button
+                      class="bg-surface-dark hover:bg-[#2a304f] border border-border-dark text-white px-5 py-2.5 rounded-lg font-medium text-sm transition-colors flex items-center gap-2"
+                    >
+                      <span class="material-symbols-outlined text-lg"
+                        >bookmark</span
+                      >
+                      Save
+                    </button>
+                    <button
+                      class="bg-surface-dark hover:bg-[#2a304f] border border-border-dark text-white px-5 py-2.5 rounded-lg font-medium text-sm transition-colors flex items-center gap-2"
+                    >
+                      <span class="material-symbols-outlined text-lg"
+                        >share</span
+                      >
+                      Share
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Stats Grid -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div
+                class="bg-surface-dark border border-border-dark rounded-xl p-5 hover:border-primary/50 transition-colors group"
+              >
+                <div
+                  class="text-[#929bc9] mb-1 text-sm font-medium flex items-center gap-2"
+                >
+                  <span class="material-symbols-outlined text-lg">memory</span>
+                  Context Window
+                </div>
+                <div
+                  class="text-white text-2xl font-bold group-hover:text-primary transition-colors"
+                >
+                  128k Tokens
+                </div>
+              </div>
+              <div
+                class="bg-surface-dark border border-border-dark rounded-xl p-5 hover:border-primary/50 transition-colors group"
+              >
+                <div
+                  class="text-[#929bc9] mb-1 text-sm font-medium flex items-center gap-2"
+                >
+                  <span class="material-symbols-outlined text-lg">history</span>
+                  Knowledge Cutoff
+                </div>
+                <div
+                  class="text-white text-2xl font-bold group-hover:text-primary transition-colors"
+                >
+                  Dec 2023
+                </div>
+              </div>
+              <div
+                class="bg-surface-dark border border-border-dark rounded-xl p-5 hover:border-primary/50 transition-colors group"
+              >
+                <div
+                  class="text-[#929bc9] mb-1 text-sm font-medium flex items-center gap-2"
+                >
+                  <span class="material-symbols-outlined text-lg">hub</span>
+                  Parameters
+                </div>
+                <div
+                  class="text-white text-2xl font-bold group-hover:text-primary transition-colors"
+                >
+                  ~1.76 Trillion
+                </div>
+              </div>
+              <div
+                class="bg-surface-dark border border-border-dark rounded-xl p-5 hover:border-primary/50 transition-colors group"
+              >
+                <div
+                  class="text-[#929bc9] mb-1 text-sm font-medium flex items-center gap-2"
+                >
+                  <span class="material-symbols-outlined text-lg">school</span>
+                  Training Data
+                </div>
+                <div
+                  class="text-white text-2xl font-bold group-hover:text-primary transition-colors"
+                >
+                  Web &amp; Books
+                </div>
+              </div>
+            </div>
+            <!-- Two Column Layout for Details -->
+            <div class="grid lg:grid-cols-3 gap-8">
+              <!-- Main Content (Left 2/3) -->
+              <div class="lg:col-span-2 space-y-8">
+                <!-- Key Features -->
+                <section>
+                  <h3
+                    class="text-white text-xl font-bold mb-4 flex items-center gap-2"
+                  >
+                    <span class="material-symbols-outlined text-primary"
+                      >verified</span
+                    >
+                    Key Capabilities
+                  </h3>
+                  <div class="grid sm:grid-cols-2 gap-4">
+                    <div
+                      class="bg-[#151926] p-5 rounded-xl border border-border-dark"
+                    >
+                      <div class="text-primary mb-3">
+                        <span class="material-symbols-outlined text-3xl"
+                          >chat_bubble</span
+                        >
+                      </div>
+                      <h4 class="text-white font-bold mb-2">
+                        Natural Language Understanding
+                      </h4>
+                      <p class="text-[#929bc9] text-sm leading-relaxed">
+                        Excels at grasping nuances, sarcasm, and complex
+                        instructions in human conversation across dozens of
+                        languages.
+                      </p>
+                    </div>
+                    <div
+                      class="bg-[#151926] p-5 rounded-xl border border-border-dark"
+                    >
+                      <div class="text-purple-500 mb-3">
+                        <span class="material-symbols-outlined text-3xl"
+                          >terminal</span
+                        >
+                      </div>
+                      <h4 class="text-white font-bold mb-2">
+                        Code Generation &amp; Analysis
+                      </h4>
+                      <p class="text-[#929bc9] text-sm leading-relaxed">
+                        Can write, debug, and explain code in Python,
+                        JavaScript, C++, and more, acting as a pair programmer.
+                      </p>
+                    </div>
+                    <div
+                      class="bg-[#151926] p-5 rounded-xl border border-border-dark"
+                    >
+                      <div class="text-pink-500 mb-3">
+                        <span class="material-symbols-outlined text-3xl"
+                          >brush</span
+                        >
+                      </div>
+                      <h4 class="text-white font-bold mb-2">
+                        Creative Writing
+                      </h4>
+                      <p class="text-[#929bc9] text-sm leading-relaxed">
+                        Generates poems, scripts, musical compositions, email,
+                        letters, etc. with adaptable tone and style.
+                      </p>
+                    </div>
+                    <div
+                      class="bg-[#151926] p-5 rounded-xl border border-border-dark"
+                    >
+                      <div class="text-orange-500 mb-3">
+                        <span class="material-symbols-outlined text-3xl"
+                          >view_in_ar</span
+                        >
+                      </div>
+                      <h4 class="text-white font-bold mb-2">
+                        Multimodal Analysis
+                      </h4>
+                      <p class="text-[#929bc9] text-sm leading-relaxed">
+                        GPT-4o and later models can analyze images and audio
+                        inputs directly to provide context-aware responses.
+                      </p>
+                    </div>
+                  </div>
+                </section>
+                <!-- Use Cases -->
+                <section>
+                  <h3 class="text-white text-xl font-bold mb-4">
+                    Practical Applications
+                  </h3>
+                  <div
+                    class="bg-surface-dark rounded-xl border border-border-dark overflow-hidden divide-y divide-border-dark"
+                  >
+                    <div
+                      class="p-4 hover:bg-[#232948]/50 transition-colors flex gap-4"
+                    >
+                      <div class="mt-1">
+                        <div
+                          class="size-10 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-500"
+                        >
+                          <span class="material-symbols-outlined"
+                            >support_agent</span
+                          >
+                        </div>
+                      </div>
+                      <div>
+                        <h5 class="text-white font-bold">
+                          Customer Support Automation
+                        </h5>
+                        <p class="text-[#929bc9] text-sm mt-1">
+                          Automate responses to common queries, troubleshoot
+                          issues, and triage tickets with high accuracy,
+                          reducing human workload.
+                        </p>
+                      </div>
+                    </div>
+                    <div
+                      class="p-4 hover:bg-[#232948]/50 transition-colors flex gap-4"
+                    >
+                      <div class="mt-1">
+                        <div
+                          class="size-10 rounded-lg bg-green-500/10 flex items-center justify-center text-green-500"
+                        >
+                          <span class="material-symbols-outlined">school</span>
+                        </div>
+                      </div>
+                      <div>
+                        <h5 class="text-white font-bold">
+                          Personalized Education
+                        </h5>
+                        <p class="text-[#929bc9] text-sm mt-1">
+                          Create custom study plans, explain complex topics in
+                          simple terms, and provide instant feedback on student
+                          work.
+                        </p>
+                      </div>
+                    </div>
+                    <div
+                      class="p-4 hover:bg-[#232948]/50 transition-colors flex gap-4"
+                    >
+                      <div class="mt-1">
+                        <div
+                          class="size-10 rounded-lg bg-purple-500/10 flex items-center justify-center text-purple-500"
+                        >
+                          <span class="material-symbols-outlined"
+                            >campaign</span
+                          >
+                        </div>
+                      </div>
+                      <div>
+                        <h5 class="text-white font-bold">Content Marketing</h5>
+                        <p class="text-[#929bc9] text-sm mt-1">
+                          Draft blog posts, social media captions, and ad copy
+                          variations instantly to scale marketing efforts.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              </div>
+              <!-- Sidebar (Right 1/3) -->
+              <div class="space-y-6">
+                <!-- Versions Card -->
+                <div
+                  class="bg-surface-dark border border-border-dark rounded-xl p-6"
+                >
+                  <h3
+                    class="text-white font-bold mb-4 flex items-center justify-between"
+                  >
+                    Versions
+                    <a
+                      class="text-xs text-primary font-medium hover:underline"
+                      href="#"
+                      >View All</a
+                    >
+                  </h3>
+                  <div class="space-y-3">
+                    <div
+                      class="flex items-center justify-between p-3 rounded-lg bg-[#232948] border border-primary/30 relative overflow-hidden"
+                    >
+                      <div
+                        class="absolute left-0 top-0 bottom-0 w-1 bg-primary"
+                      ></div>
+                      <div>
+                        <div class="text-white font-bold text-sm">GPT-4o</div>
+                        <div class="text-xs text-primary mt-0.5">
+                          Latest • Multimodal
+                        </div>
+                      </div>
+                      <span
+                        class="material-symbols-outlined text-primary text-lg"
+                        >check_circle</span
+                      >
+                    </div>
+                    <div
+                      class="flex items-center justify-between p-3 rounded-lg bg-[#151926] border border-border-dark hover:border-[#929bc9] transition-colors cursor-pointer"
+                    >
+                      <div>
+                        <div class="text-white font-medium text-sm">
+                          GPT-4 Turbo
+                        </div>
+                        <div class="text-xs text-[#929bc9] mt-0.5">
+                          High Speed • Efficient
+                        </div>
+                      </div>
+                      <span
+                        class="material-symbols-outlined text-[#565d88] text-lg"
+                        >chevron_right</span
+                      >
+                    </div>
+                    <div
+                      class="flex items-center justify-between p-3 rounded-lg bg-[#151926] border border-border-dark hover:border-[#929bc9] transition-colors cursor-pointer"
+                    >
+                      <div>
+                        <div class="text-white font-medium text-sm">
+                          GPT-3.5
+                        </div>
+                        <div class="text-xs text-[#929bc9] mt-0.5">
+                          Legacy • Fast
+                        </div>
+                      </div>
+                      <span
+                        class="material-symbols-outlined text-[#565d88] text-lg"
+                        >chevron_right</span
+                      >
+                    </div>
+                  </div>
+                </div>
+                <!-- Integration/Code Snippet -->
+                <div
+                  class="bg-surface-dark border border-border-dark rounded-xl p-6"
+                >
+                  <h3 class="text-white font-bold mb-4">Quick Integration</h3>
+                  <div
+                    class="bg-[#0d1017] rounded-lg p-4 font-mono text-xs text-gray-300 border border-border-dark relative group"
+                  >
+                    <button
+                      class="absolute top-2 right-2 text-[#565d88] hover:text-white opacity-0 group-hover:opacity-100 transition-opacity"
+                    >
+                      <span class="material-symbols-outlined text-base"
+                        >content_copy</span
+                      >
+                    </button>
+                    <pre><span class="text-purple-400">import</span> openai
+
+response = openai.ChatCompletion.create(
+  model=<span class="text-green-400">"gpt-4"</span>,
+  messages=[
+    {<span class="text-green-400">"role"</span>: <span class="text-green-400">"user"</span>, <span class="text-green-400">"content"</span>: <span class="text-green-400">"Hello!"</span>}
+  ]
+)</pre>
+                  </div>
+                  <button
+                    class="w-full mt-4 py-2 border border-border-dark text-white rounded-lg text-sm font-medium hover:bg-[#232948] transition-colors"
+                  >
+                    View API Docs
+                  </button>
+                </div>
+                <!-- Similar Models -->
+                <div
+                  class="bg-surface-dark border border-border-dark rounded-xl p-6"
+                >
+                  <h3 class="text-white font-bold mb-4">Similar Models</h3>
+                  <div class="space-y-4">
+                    <div class="flex items-center gap-3">
+                      <div
+                        class="size-8 rounded bg-white flex items-center justify-center"
+                        data-alt="Claude Logo"
+                      >
+                        <span class="text-black font-bold text-xs">C</span>
+                      </div>
+                      <div class="flex-1">
+                        <div class="text-white text-sm font-medium">
+                          Claude 3.5 Sonnet
+                        </div>
+                        <div class="text-[#929bc9] text-xs">Anthropic</div>
+                      </div>
+                    </div>
+                    <div class="flex items-center gap-3">
+                      <div
+                        class="size-8 rounded bg-blue-600 flex items-center justify-center"
+                        data-alt="Llama Logo"
+                      >
+                        <span class="text-white font-bold text-xs">L</span>
+                      </div>
+                      <div class="flex-1">
+                        <div class="text-white text-sm font-medium">
+                          Llama 3
+                        </div>
+                        <div class="text-[#929bc9] text-xs">Meta</div>
+                      </div>
+                    </div>
+                    <div class="flex items-center gap-3">
+                      <div
+                        class="size-8 rounded bg-orange-500 flex items-center justify-center"
+                        data-alt="Mistral Logo"
+                      >
+                        <span class="text-white font-bold text-xs">M</span>
+                      </div>
+                      <div class="flex-1">
+                        <div class="text-white text-sm font-medium">
+                          Mistral Large
+                        </div>
+                        <div class="text-[#929bc9] text-xs">Mistral AI</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

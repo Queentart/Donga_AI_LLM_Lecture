@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>LLaMA - AI Research Hub</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Noto+Sans:wght@400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#1337ec",
+              "background-light": "#f6f6f8",
+              "background-dark": "#101322",
+              "card-dark": "#1e2332",
+              "border-dark": "#2a3146",
+              "text-secondary": "#929bc9",
+            },
+            fontFamily: {
+              display: ["Space Grotesk", "sans-serif"],
+              body: ["Noto Sans", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              "2xl": "1rem",
+              full: "9999px",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body
+    class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display overflow-x-hidden antialiased selection:bg-primary selection:text-white"
+  >
+    <!-- Main Layout Container -->
+    <div class="relative flex min-h-screen w-full flex-col">
+      <!-- Top Navigation -->
+      <header
+        class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-gray-200 dark:border-border-dark bg-white/90 dark:bg-background-dark/90 backdrop-blur-md px-4 sm:px-10 py-3"
+      >
+        <div class="flex items-center gap-8">
+          <div class="flex items-center gap-4 text-slate-900 dark:text-white">
+            <div class="size-8 text-primary">
+              <span class="material-symbols-outlined !text-[32px]">hub</span>
+            </div>
+            <h2
+              class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]"
+            >
+              AI Research Hub
+            </h2>
+          </div>
+          <div class="hidden lg:flex items-center gap-9">
+            <a
+              class="text-slate-600 dark:text-text-secondary hover:text-primary dark:hover:text-white text-sm font-medium leading-normal transition-colors"
+              href="#"
+              >Models</a
+            >
+            <a
+              class="text-slate-600 dark:text-text-secondary hover:text-primary dark:hover:text-white text-sm font-medium leading-normal transition-colors"
+              href="#"
+              >Datasets</a
+            >
+            <a
+              class="text-slate-600 dark:text-text-secondary hover:text-primary dark:hover:text-white text-sm font-medium leading-normal transition-colors"
+              href="#"
+              >Papers</a
+            >
+            <a
+              class="text-slate-600 dark:text-text-secondary hover:text-primary dark:hover:text-white text-sm font-medium leading-normal transition-colors"
+              href="#"
+              >Community</a
+            >
+          </div>
+        </div>
+        <div class="flex flex-1 justify-end gap-4 lg:gap-8">
+          <label class="hidden md:flex flex-col min-w-40 !h-10 max-w-64">
+            <div
+              class="flex w-full flex-1 items-stretch rounded-lg h-full border border-gray-200 dark:border-border-dark bg-gray-50 dark:bg-card-dark focus-within:ring-2 ring-primary/50 transition-all"
+            >
+              <div
+                class="text-slate-400 dark:text-text-secondary flex bg-transparent items-center justify-center pl-4 rounded-l-lg border-r-0"
+              >
+                <span class="material-symbols-outlined">search</span>
+              </div>
+              <input
+                class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-slate-900 dark:text-white focus:outline-0 focus:ring-0 border-none bg-transparent h-full placeholder:text-slate-400 dark:placeholder:text-text-secondary px-3 text-sm font-normal leading-normal"
+                placeholder="Search models..."
+                value=""
+              />
+            </div>
+          </label>
+          <button
+            class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary hover:bg-primary/90 transition-colors text-white text-sm font-bold leading-normal tracking-[0.015em]"
+          >
+            <span class="truncate">Sign In</span>
+          </button>
+        </div>
+      </header>
+      <!-- Main Content Area with Sidebar -->
+      <div class="flex flex-1 w-full max-w-[1440px] mx-auto">
+        <!-- Sticky Side Navigation (Desktop) -->
+        <aside
+          class="hidden lg:flex w-64 flex-col sticky top-[65px] h-[calc(100vh-65px)] border-r border-gray-200 dark:border-border-dark p-6 overflow-y-auto"
+        >
+          <div class="flex flex-col gap-6">
+            <div
+              class="flex flex-col pb-4 border-b border-gray-200 dark:border-border-dark"
+            >
+              <div class="flex items-center gap-3 mb-2">
+                <div
+                  class="w-10 h-10 rounded bg-gradient-to-br from-primary to-purple-600 flex items-center justify-center text-white font-bold text-xl"
+                >
+                  L
+                </div>
+                <div>
+                  <h1
+                    class="text-slate-900 dark:text-white text-lg font-bold leading-tight"
+                  >
+                    LLaMA
+                  </h1>
+                  <p class="text-slate-500 dark:text-text-secondary text-xs">
+                    Meta AI
+                  </p>
+                </div>
+              </div>
+              <span
+                class="inline-flex items-center w-fit px-2 py-1 rounded bg-green-500/10 text-green-600 dark:text-green-400 text-xs font-medium mt-1"
+              >
+                <span class="w-1.5 h-1.5 rounded-full bg-green-500 mr-2"></span>
+                Active Research
+              </span>
+            </div>
+            <nav class="flex flex-col gap-1">
+              <a
+                class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/10 text-primary dark:text-white font-medium"
+                href="#overview"
+              >
+                <span class="material-symbols-outlined text-[20px]"
+                  >overview</span
+                >
+                <span class="text-sm">Overview</span>
+              </a>
+              <a
+                class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-card-dark text-slate-600 dark:text-text-secondary transition-colors"
+                href="#specs"
+              >
+                <span class="material-symbols-outlined text-[20px]">tune</span>
+                <span class="text-sm">Specifications</span>
+              </a>
+              <a
+                class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-card-dark text-slate-600 dark:text-text-secondary transition-colors"
+                href="#features"
+              >
+                <span class="material-symbols-outlined text-[20px]"
+                  >featured_play_list</span
+                >
+                <span class="text-sm">Key Features</span>
+              </a>
+              <a
+                class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-card-dark text-slate-600 dark:text-text-secondary transition-colors"
+                href="#benchmarks"
+              >
+                <span class="material-symbols-outlined text-[20px]"
+                  >bar_chart</span
+                >
+                <span class="text-sm">Benchmarks</span>
+              </a>
+              <a
+                class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-card-dark text-slate-600 dark:text-text-secondary transition-colors"
+                href="#code"
+              >
+                <span class="material-symbols-outlined text-[20px]">code</span>
+                <span class="text-sm">Usage</span>
+              </a>
+            </nav>
+            <div class="mt-auto">
+              <button
+                class="w-full flex items-center justify-center gap-2 rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-all"
+              >
+                <span class="material-symbols-outlined text-[18px]"
+                  >download</span
+                >
+                Download Weights
+              </button>
+            </div>
+          </div>
+        </aside>
+        <!-- Scrollable Main Content -->
+        <main
+          class="flex-1 min-w-0 p-4 sm:p-6 lg:p-10 lg:pr-16 flex flex-col gap-10"
+        >
+          <!-- Hero Section -->
+          <section
+            class="flex flex-col gap-6 md:flex-row md:items-start md:justify-between animate-fade-in"
+            id="overview"
+          >
+            <div class="flex flex-col gap-4 max-w-2xl">
+              <div
+                class="flex items-center gap-2 text-primary text-sm font-bold tracking-wider uppercase"
+              >
+                <span class="material-symbols-outlined text-[18px]"
+                  >science</span
+                >
+                Foundational Model
+              </div>
+              <h1
+                class="text-slate-900 dark:text-white text-4xl sm:text-5xl font-black leading-[1.1] tracking-tight"
+              >
+                LLaMA: Meta's Open-Source LLM
+              </h1>
+              <p
+                class="text-slate-600 dark:text-text-secondary text-lg leading-relaxed max-w-xl"
+              >
+                A state-of-the-art foundational large language model designed to
+                help researchers advance their work in this subfield of AI.
+                LLaMA democratizes access to research-grade LLMs.
+              </p>
+              <div class="flex flex-wrap gap-3 mt-2">
+                <button
+                  class="flex items-center gap-2 h-12 px-6 bg-primary text-white rounded-lg font-bold hover:bg-primary/90 transition-all"
+                >
+                  Request Access
+                  <span class="material-symbols-outlined text-[18px]"
+                    >arrow_forward</span
+                  >
+                </button>
+                <button
+                  class="flex items-center gap-2 h-12 px-6 bg-white dark:bg-card-dark border border-gray-200 dark:border-border-dark text-slate-900 dark:text-white rounded-lg font-bold hover:bg-gray-50 dark:hover:bg-border-dark transition-all"
+                >
+                  <span class="material-symbols-outlined text-[18px]"
+                    >article</span
+                  >
+                  Read Paper
+                </button>
+              </div>
+            </div>
+            <!-- Abstract Visualization -->
+            <div
+              class="hidden md:block w-[300px] h-[300px] rounded-2xl bg-gradient-to-br from-indigo-900 via-primary to-blue-900 shadow-2xl shadow-primary/20 relative overflow-hidden"
+              data-alt="Abstract visualization of neural network nodes connecting"
+            >
+              <div
+                class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-30 mix-blend-overlay"
+              ></div>
+              <div
+                class="absolute -bottom-10 -right-10 w-40 h-40 bg-purple-500 blur-[80px] opacity-60"
+              ></div>
+              <div
+                class="absolute top-10 left-10 w-40 h-40 bg-blue-400 blur-[60px] opacity-40"
+              ></div>
+              <div class="absolute inset-0 flex items-center justify-center">
+                <span
+                  class="material-symbols-outlined text-white text-[80px] opacity-80"
+                  >psychology</span
+                >
+              </div>
+            </div>
+          </section>
+          <!-- Stats Grid -->
+          <section class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div
+              class="p-5 rounded-xl bg-white dark:bg-card-dark border border-gray-200 dark:border-border-dark"
+            >
+              <div
+                class="flex items-center gap-2 mb-2 text-text-secondary text-sm font-medium"
+              >
+                <span class="material-symbols-outlined text-[18px]"
+                  >dataset</span
+                >
+                Parameters
+              </div>
+              <p class="text-slate-900 dark:text-white text-2xl font-bold">
+                7B - 65B
+              </p>
+            </div>
+            <div
+              class="p-5 rounded-xl bg-white dark:bg-card-dark border border-gray-200 dark:border-border-dark"
+            >
+              <div
+                class="flex items-center gap-2 mb-2 text-text-secondary text-sm font-medium"
+              >
+                <span class="material-symbols-outlined text-[18px]">token</span>
+                Training Tokens
+              </div>
+              <p class="text-slate-900 dark:text-white text-2xl font-bold">
+                1.4 Trillion
+              </p>
+            </div>
+            <div
+              class="p-5 rounded-xl bg-white dark:bg-card-dark border border-gray-200 dark:border-border-dark"
+            >
+              <div
+                class="flex items-center gap-2 mb-2 text-text-secondary text-sm font-medium"
+              >
+                <span class="material-symbols-outlined text-[18px]"
+                  >memory</span
+                >
+                Context Window
+              </div>
+              <p class="text-slate-900 dark:text-white text-2xl font-bold">
+                2048 T
+              </p>
+            </div>
+            <div
+              class="p-5 rounded-xl bg-white dark:bg-card-dark border border-gray-200 dark:border-border-dark"
+            >
+              <div
+                class="flex items-center gap-2 mb-2 text-text-secondary text-sm font-medium"
+              >
+                <span class="material-symbols-outlined text-[18px]"
+                  >verified_user</span
+                >
+                License
+              </div>
+              <p class="text-slate-900 dark:text-white text-2xl font-bold">
+                Research
+              </p>
+            </div>
+          </section>
+          <!-- Key Features -->
+          <section class="flex flex-col gap-6" id="features">
+            <div class="flex flex-col gap-2">
+              <h2 class="text-slate-900 dark:text-white text-2xl font-bold">
+                Key Features
+              </h2>
+              <p class="text-slate-600 dark:text-text-secondary">
+                Why LLaMA is significant for the open source community.
+              </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <!-- Feature 1 -->
+              <div
+                class="flex flex-col gap-4 p-6 rounded-xl bg-gray-50 dark:bg-card-dark/50 border border-gray-200 dark:border-border-dark hover:border-primary/50 transition-colors group"
+              >
+                <div
+                  class="size-12 rounded-lg bg-primary/10 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors"
+                >
+                  <span class="material-symbols-outlined">bolt</span>
+                </div>
+                <div>
+                  <h3
+                    class="text-slate-900 dark:text-white text-lg font-bold mb-2"
+                  >
+                    Efficient Performance
+                  </h3>
+                  <p
+                    class="text-slate-600 dark:text-text-secondary text-sm leading-relaxed"
+                  >
+                    LLaMA-13B outperforms GPT-3 (175B) on most benchmarks
+                    despite being 10x smaller, allowing it to run on a single
+                    GPU.
+                  </p>
+                </div>
+              </div>
+              <!-- Feature 2 -->
+              <div
+                class="flex flex-col gap-4 p-6 rounded-xl bg-gray-50 dark:bg-card-dark/50 border border-gray-200 dark:border-border-dark hover:border-primary/50 transition-colors group"
+              >
+                <div
+                  class="size-12 rounded-lg bg-primary/10 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors"
+                >
+                  <span class="material-symbols-outlined">public</span>
+                </div>
+                <div>
+                  <h3
+                    class="text-slate-900 dark:text-white text-lg font-bold mb-2"
+                  >
+                    Open Research
+                  </h3>
+                  <p
+                    class="text-slate-600 dark:text-text-secondary text-sm leading-relaxed"
+                  >
+                    Released under a non-commercial license focused on research
+                    use cases to maintain integrity and prevent misuse.
+                  </p>
+                </div>
+              </div>
+              <!-- Feature 3 -->
+              <div
+                class="flex flex-col gap-4 p-6 rounded-xl bg-gray-50 dark:bg-card-dark/50 border border-gray-200 dark:border-border-dark hover:border-primary/50 transition-colors group"
+              >
+                <div
+                  class="size-12 rounded-lg bg-primary/10 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors"
+                >
+                  <span class="material-symbols-outlined">extension</span>
+                </div>
+                <div>
+                  <h3
+                    class="text-slate-900 dark:text-white text-lg font-bold mb-2"
+                  >
+                    Versatile Architecture
+                  </h3>
+                  <p
+                    class="text-slate-600 dark:text-text-secondary text-sm leading-relaxed"
+                  >
+                    Built on standard transformer architecture with improvements
+                    like RMSNorm and SwiGLU activation functions.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+          <!-- Technical Specs Table -->
+          <section class="flex flex-col gap-6" id="specs">
+            <h2 class="text-slate-900 dark:text-white text-2xl font-bold">
+              Model Specifications
+            </h2>
+            <div
+              class="w-full overflow-hidden rounded-xl border border-gray-200 dark:border-border-dark bg-white dark:bg-card-dark"
+            >
+              <div class="overflow-x-auto">
+                <table class="w-full text-left text-sm">
+                  <thead
+                    class="bg-gray-50 dark:bg-[#151a2a] text-slate-500 dark:text-text-secondary uppercase text-xs font-semibold"
+                  >
+                    <tr>
+                      <th class="px-6 py-4">Model Size</th>
+                      <th class="px-6 py-4">Hidden Size</th>
+                      <th class="px-6 py-4">Layers</th>
+                      <th class="px-6 py-4">Heads</th>
+                      <th class="px-6 py-4">Min GPU VRAM (Inference)</th>
+                    </tr>
+                  </thead>
+                  <tbody
+                    class="divide-y divide-gray-200 dark:divide-border-dark text-slate-700 dark:text-gray-300"
+                  >
+                    <tr
+                      class="hover:bg-gray-50 dark:hover:bg-white/5 transition-colors"
+                    >
+                      <td class="px-6 py-4 font-bold text-primary">7B</td>
+                      <td class="px-6 py-4">4096</td>
+                      <td class="px-6 py-4">32</td>
+                      <td class="px-6 py-4">32</td>
+                      <td class="px-6 py-4">~14GB (FP16)</td>
+                    </tr>
+                    <tr
+                      class="hover:bg-gray-50 dark:hover:bg-white/5 transition-colors"
+                    >
+                      <td class="px-6 py-4 font-bold text-primary">13B</td>
+                      <td class="px-6 py-4">5120</td>
+                      <td class="px-6 py-4">40</td>
+                      <td class="px-6 py-4">40</td>
+                      <td class="px-6 py-4">~26GB (FP16)</td>
+                    </tr>
+                    <tr
+                      class="hover:bg-gray-50 dark:hover:bg-white/5 transition-colors"
+                    >
+                      <td class="px-6 py-4 font-bold text-primary">33B</td>
+                      <td class="px-6 py-4">6656</td>
+                      <td class="px-6 py-4">60</td>
+                      <td class="px-6 py-4">52</td>
+                      <td class="px-6 py-4">~66GB (FP16)</td>
+                    </tr>
+                    <tr
+                      class="hover:bg-gray-50 dark:hover:bg-white/5 transition-colors"
+                    >
+                      <td class="px-6 py-4 font-bold text-primary">65B</td>
+                      <td class="px-6 py-4">8192</td>
+                      <td class="px-6 py-4">80</td>
+                      <td class="px-6 py-4">64</td>
+                      <td class="px-6 py-4">~130GB (FP16)</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+          <!-- Code Example -->
+          <section class="flex flex-col gap-6" id="code">
+            <div class="flex items-center justify-between">
+              <h2 class="text-slate-900 dark:text-white text-2xl font-bold">
+                Usage Example
+              </h2>
+              <div class="flex gap-2">
+                <span
+                  class="px-2 py-1 rounded bg-gray-200 dark:bg-border-dark text-xs font-mono text-slate-700 dark:text-gray-300"
+                  >Python</span
+                >
+                <span
+                  class="px-2 py-1 rounded bg-gray-200 dark:bg-border-dark text-xs font-mono text-slate-700 dark:text-gray-300"
+                  >PyTorch</span
+                >
+              </div>
+            </div>
+            <div
+              class="relative group rounded-xl overflow-hidden bg-[#0d1117] border border-border-dark font-mono text-sm shadow-2xl"
+            >
+              <div
+                class="flex items-center justify-between px-4 py-2 bg-[#161b22] border-b border-border-dark"
+              >
+                <div class="flex gap-2">
+                  <div class="size-3 rounded-full bg-red-500/80"></div>
+                  <div class="size-3 rounded-full bg-yellow-500/80"></div>
+                  <div class="size-3 rounded-full bg-green-500/80"></div>
+                </div>
+                <span class="text-gray-500 text-xs">inference.py</span>
+              </div>
+              <div class="p-6 overflow-x-auto text-gray-300 leading-relaxed">
+                <pre><code><span class="text-purple-400">import</span> torch
+<span class="text-purple-400">from</span> llama <span class="text-purple-400">import</span> LLaMA, ModelArgs
+
+<span class="text-gray-500"># Initialize model args</span>
+model_args = ModelArgs(
+    dim=<span class="text-orange-400">4096</span>,
+    n_layers=<span class="text-orange-400">32</span>,
+    n_heads=<span class="text-orange-400">32</span>,
+    vocab_size=<span class="text-orange-400">32000</span>
+)
+
+<span class="text-gray-500"># Load pre-trained weights</span>
+model = LLaMA(model_args)
+checkpoint = torch.load(<span class="text-green-400">"/path/to/llama-7b.pth"</span>)
+model.load_state_dict(checkpoint)
+
+<span class="text-gray-500"># Run inference</span>
+prompts = [<span class="text-green-400">"The future of AI is"</span>]
+results = model.generate(prompts, max_gen_len=<span class="text-orange-400">64</span>)
+
+<span class="text-yellow-300">print</span>(results[<span class="text-orange-400">0</span>])</code></pre>
+              </div>
+              <button
+                class="absolute top-12 right-4 p-2 rounded bg-white/10 hover:bg-white/20 text-white opacity-0 group-hover:opacity-100 transition-opacity"
+              >
+                <span class="material-symbols-outlined text-[18px]"
+                  >content_copy</span
+                >
+              </button>
+            </div>
+          </section>
+          <!-- Footer CTA -->
+          <section class="mt-8 mb-4">
+            <div
+              class="rounded-2xl bg-gradient-to-r from-primary/90 to-blue-600 p-8 md:p-12 text-center md:text-left flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden"
+            >
+              <!-- Decorative shapes -->
+              <div
+                class="absolute top-0 right-0 -mr-16 -mt-16 w-64 h-64 rounded-full bg-white/10 blur-3xl"
+              ></div>
+              <div
+                class="absolute bottom-0 left-0 -ml-16 -mb-16 w-64 h-64 rounded-full bg-black/10 blur-3xl"
+              ></div>
+              <div class="relative z-10 max-w-xl">
+                <h2 class="text-white text-3xl font-bold mb-4">
+                  Ready to accelerate your research?
+                </h2>
+                <p class="text-blue-100 text-lg">
+                  Join thousands of researchers pushing the boundaries of
+                  Natural Language Processing with LLaMA.
+                </p>
+              </div>
+              <div class="relative z-10 flex flex-col sm:flex-row gap-4">
+                <button
+                  class="px-8 py-3 bg-white text-primary font-bold rounded-lg hover:bg-gray-50 transition-colors shadow-lg"
+                >
+                  Apply for Access
+                </button>
+                <button
+                  class="px-8 py-3 bg-primary/40 border border-white/20 text-white font-bold rounded-lg hover:bg-primary/50 transition-colors backdrop-blur-sm"
+                >
+                  View Community
+                </button>
+              </div>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>

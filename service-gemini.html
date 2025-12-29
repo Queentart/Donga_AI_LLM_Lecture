@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Gemini LLM Detail Page</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Noto+Sans:wght@400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <!-- Material Icons -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <!-- Theme Config -->
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#1337ec",
+              "background-light": "#f6f6f8",
+              "background-dark": "#101322",
+              "card-dark": "#1e2338",
+              "border-dark": "#2d3452",
+            },
+            fontFamily: {
+              display: ["Space Grotesk", "sans-serif"],
+              body: ["Noto Sans", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.5rem",
+              lg: "0.75rem",
+              xl: "1rem",
+              full: "9999px",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        font-family: "Space Grotesk", "Noto Sans", sans-serif;
+      }
+      .glass-panel {
+        background: rgba(30, 35, 56, 0.7);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      .gradient-text {
+        background: linear-gradient(135deg, #fff 0%, #a5b4fc 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-background-light dark:bg-background-dark min-h-screen flex flex-col overflow-x-hidden text-slate-900 dark:text-white"
+  >
+    <!-- Navigation -->
+    <header
+      class="sticky top-0 z-50 w-full border-b border-gray-200 dark:border-[#232948] bg-background-light/80 dark:bg-[#111422]/80 backdrop-blur-md"
+    >
+      <div class="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="flex items-center justify-between h-16">
+          <div class="flex items-center gap-4">
+            <div class="size-8 text-primary">
+              <svg
+                class="w-full h-full"
+                fill="none"
+                viewbox="0 0 48 48"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="M24 4H6V17.3333V30.6667H24V44H42V30.6667V17.3333H24V4Z"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                ></path>
+              </svg>
+            </div>
+            <h2 class="text-xl font-bold tracking-tight">Gemini</h2>
+          </div>
+          <nav class="hidden md:flex items-center gap-8">
+            <a
+              class="text-sm font-medium hover:text-primary transition-colors"
+              href="#"
+              >Overview</a
+            >
+            <a
+              class="text-sm font-medium hover:text-primary transition-colors"
+              href="#"
+              >Capabilities</a
+            >
+            <a
+              class="text-sm font-medium hover:text-primary transition-colors"
+              href="#"
+              >Pricing</a
+            >
+            <a
+              class="text-sm font-medium hover:text-primary transition-colors"
+              href="#"
+              >Docs</a
+            >
+          </nav>
+          <div class="flex items-center gap-3">
+            <button
+              class="hidden sm:flex h-9 items-center justify-center rounded px-4 text-sm font-medium hover:bg-gray-100 dark:hover:bg-[#232948] transition-colors"
+            >
+              Log in
+            </button>
+            <button
+              class="flex h-9 items-center justify-center rounded bg-primary px-4 text-sm font-bold text-white shadow-sm hover:bg-blue-700 transition-colors"
+            >
+              Get API Key
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+    <main class="flex-1">
+      <!-- Hero Section -->
+      <section class="relative isolate overflow-hidden">
+        <!-- Background Gradient -->
+        <div
+          class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80 pointer-events-none"
+        >
+          <div
+            class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#1337ec] to-[#9089fc] opacity-20 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
+          ></div>
+        </div>
+        <div class="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8">
+          <div
+            class="mx-auto max-w-2xl lg:max-w-none flex flex-col lg:flex-row gap-16 items-center"
+          >
+            <div class="flex flex-col gap-6 lg:w-1/2">
+              <div
+                class="inline-flex items-center rounded-full border border-[#2d3452] bg-[#1e2338]/50 px-3 py-1 text-sm font-medium text-primary backdrop-blur-sm w-fit"
+              >
+                <span>New Release v1.5</span>
+              </div>
+              <h1
+                class="text-4xl font-black tracking-tight sm:text-6xl gradient-text"
+              >
+                Gemini: Google's Advanced LLM
+              </h1>
+              <p class="text-lg leading-8 text-slate-600 dark:text-gray-300">
+                The most capable and general model built by Google. Seamlessly
+                reasoning across text, images, video, audio, and code.
+              </p>
+              <div class="flex flex-wrap gap-4 mt-4">
+                <button
+                  class="rounded-lg bg-primary px-6 py-3 text-sm font-bold text-white shadow-sm hover:bg-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 transition-all flex items-center gap-2"
+                >
+                  Start Building
+                  <span class="material-symbols-outlined text-[20px]"
+                    >arrow_forward</span
+                  >
+                </button>
+                <button
+                  class="rounded-lg bg-white/10 px-6 py-3 text-sm font-bold text-slate-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-white/20 hover:bg-gray-50 dark:hover:bg-white/5 transition-all flex items-center gap-2"
+                >
+                  <span class="material-symbols-outlined text-[20px]"
+                    >play_circle</span
+                  >
+                  Watch Demo
+                </button>
+              </div>
+              <!-- Mini Specs -->
+              <div
+                class="flex gap-8 mt-8 border-t border-gray-200 dark:border-gray-800 pt-8"
+              >
+                <div>
+                  <div
+                    class="text-2xl font-bold text-slate-900 dark:text-white"
+                  >
+                    1M+
+                  </div>
+                  <div class="text-sm text-slate-500 dark:text-gray-400">
+                    Context Window
+                  </div>
+                </div>
+                <div>
+                  <div
+                    class="text-2xl font-bold text-slate-900 dark:text-white"
+                  >
+                    MoE
+                  </div>
+                  <div class="text-sm text-slate-500 dark:text-gray-400">
+                    Architecture
+                  </div>
+                </div>
+                <div>
+                  <div
+                    class="text-2xl font-bold text-slate-900 dark:text-white"
+                  >
+                    Multi
+                  </div>
+                  <div class="text-sm text-slate-500 dark:text-gray-400">
+                    Modal Native
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="lg:w-1/2 w-full">
+              <div
+                class="relative rounded-2xl bg-gray-900/5 dark:bg-white/5 p-2 ring-1 ring-inset ring-gray-900/10 dark:ring-white/10 lg:-m-4 lg:rounded-2xl lg:p-4"
+              >
+                <div
+                  class="rounded-xl bg-gray-800 shadow-2xl ring-1 ring-gray-900/10 w-full aspect-video overflow-hidden relative"
+                >
+                  <!-- Abstract visual representation of multimodal AI processing -->
+                  <div
+                    class="absolute inset-0 bg-cover bg-center"
+                    data-alt="Abstract digital network visualization with blue and purple gradients representing AI neural connections"
+                    style="
+                      background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA2Pg6AUXz9aI0Y0IkhiwSbScdXZ2JhJvxb-NPbuNLGKqcE4NRNxpA9TBUeIwqyZW32zRaPHPQmLFDshCXnie1IMKbawPDlONynaLcVtSc4gq3Pd6kLZ-eZj5PErWWgXmJSZXUhp7grIDDupz03dK7dzL2PbExKP-cLl4tBli9bDHyQSoUfvsrQwjj85uDo2J2ehFobu1A9fYFWCmmmzjuTt0hp78f5VYAzQ5DAElPEr22HAfWBHTm0YVuesZkkU7UWElq1DMgQyQw');
+                    "
+                  ></div>
+                  <div
+                    class="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent opacity-60"
+                  ></div>
+                  <!-- Fake UI Overlay -->
+                  <div
+                    class="absolute bottom-6 left-6 right-6 flex items-center gap-4"
+                  >
+                    <div
+                      class="h-12 w-12 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20"
+                    >
+                      <span class="material-symbols-outlined text-white"
+                        >smart_toy</span
+                      >
+                    </div>
+                    <div
+                      class="flex-1 h-12 rounded-full bg-white/10 backdrop-blur-md flex items-center px-6 border border-white/20"
+                    >
+                      <span class="text-white/80 text-sm animate-pulse"
+                        >Processing multimodal inputs...</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Core Capabilities Grid -->
+      <section class="py-24 bg-white dark:bg-[#0c0e19]">
+        <div class="mx-auto max-w-7xl px-6 lg:px-8">
+          <div class="mx-auto max-w-2xl text-center mb-16">
+            <h2 class="text-base font-bold leading-7 text-primary">
+              Capabilities
+            </h2>
+            <p
+              class="mt-2 text-3xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-4xl"
+            >
+              Built for the future of AI
+            </p>
+            <p class="mt-6 text-lg leading-8 text-slate-600 dark:text-gray-400">
+              Gemini is multimodal from the ground up, seamlessly understanding
+              and reasoning across different modalities.
+            </p>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Feature 1 -->
+            <div
+              class="group relative rounded-2xl bg-gray-50 dark:bg-[#15192b] p-8 transition-all hover:bg-gray-100 dark:hover:bg-[#1a1f36] border border-gray-200 dark:border-[#232948]"
+            >
+              <div
+                class="mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 group-hover:bg-primary/20 transition-colors"
+              >
+                <span class="material-symbols-outlined text-primary text-3xl"
+                  >view_in_ar</span
+                >
+              </div>
+              <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">
+                Multimodal Native
+              </h3>
+              <p class="text-slate-600 dark:text-gray-400 leading-relaxed">
+                Trained jointly on image, audio, video, and text data to build a
+                model with strong generalist capabilities across modalities.
+              </p>
+            </div>
+            <!-- Feature 2 -->
+            <div
+              class="group relative rounded-2xl bg-gray-50 dark:bg-[#15192b] p-8 transition-all hover:bg-gray-100 dark:hover:bg-[#1a1f36] border border-gray-200 dark:border-[#232948]"
+            >
+              <div
+                class="mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 group-hover:bg-primary/20 transition-colors"
+              >
+                <span class="material-symbols-outlined text-primary text-3xl"
+                  >psychology</span
+                >
+              </div>
+              <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">
+                Sophisticated Reasoning
+              </h3>
+              <p class="text-slate-600 dark:text-gray-400 leading-relaxed">
+                Discover knowledge in vast amounts of data. Capable of
+                extracting insights from hundreds of thousands of documents.
+              </p>
+            </div>
+            <!-- Feature 3 -->
+            <div
+              class="group relative rounded-2xl bg-gray-50 dark:bg-[#15192b] p-8 transition-all hover:bg-gray-100 dark:hover:bg-[#1a1f36] border border-gray-200 dark:border-[#232948]"
+            >
+              <div
+                class="mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 group-hover:bg-primary/20 transition-colors"
+              >
+                <span class="material-symbols-outlined text-primary text-3xl"
+                  >terminal</span
+                >
+              </div>
+              <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">
+                Advanced Coding
+              </h3>
+              <p class="text-slate-600 dark:text-gray-400 leading-relaxed">
+                Can understand, explain, and generate high-quality code in the
+                world's most popular programming languages.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Integration & Use Cases Split -->
+      <section
+        class="py-24 bg-background-light dark:bg-background-dark relative"
+      >
+        <div
+          class="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-gray-300 dark:via-gray-700 to-transparent"
+        ></div>
+        <div class="mx-auto max-w-7xl px-6 lg:px-8">
+          <div class="grid lg:grid-cols-2 gap-16">
+            <!-- Code/Integration Side -->
+            <div class="flex flex-col gap-8">
+              <div>
+                <h2
+                  class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-4xl mb-4"
+                >
+                  Easy Integration
+                </h2>
+                <p class="text-lg text-slate-600 dark:text-gray-400">
+                  Get started with just a few lines of code. Available via REST
+                  API and client libraries for Python, Node.js, Go, and Swift.
+                </p>
+              </div>
+              <!-- Code Block -->
+              <div
+                class="rounded-xl bg-[#0d1117] border border-gray-700 overflow-hidden shadow-2xl"
+              >
+                <div
+                  class="flex items-center justify-between px-4 py-3 bg-[#161b22] border-b border-gray-700"
+                >
+                  <div class="flex space-x-2">
+                    <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                    <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                    <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                  </div>
+                  <div class="text-xs text-gray-400 font-mono">
+                    generate_content.py
+                  </div>
+                </div>
+                <div class="p-4 overflow-x-auto">
+                  <pre
+                    class="text-sm font-mono leading-relaxed text-gray-300"
+                  ><span class="text-[#ff7b72]">import</span> google.generativeai <span class="text-[#ff7b72]">as</span> genai
+
+genai.configure(api_key=<span class="text-[#a5d6ff]">'YOUR_API_KEY'</span>)
+
+model = genai.GenerativeModel(<span class="text-[#a5d6ff]">'gemini-pro'</span>)
+
+response = model.generate_content(
+    <span class="text-[#a5d6ff]">"Explain quantum computing to a 5 year old."</span>
+)
+
+<span class="text-[#d2a8ff]">print</span>(response.text)</pre>
+                </div>
+              </div>
+              <div class="flex gap-4">
+                <a
+                  class="text-primary font-bold hover:underline flex items-center gap-1"
+                  href="#"
+                >
+                  View API Reference
+                  <span class="material-symbols-outlined text-sm"
+                    >open_in_new</span
+                  >
+                </a>
+                <a
+                  class="text-slate-500 dark:text-gray-400 font-medium hover:text-white flex items-center gap-1"
+                  href="#"
+                >
+                  Explore GitHub
+                  <span class="material-symbols-outlined text-sm">code</span>
+                </a>
+              </div>
+            </div>
+            <!-- Use Cases Side -->
+            <div class="flex flex-col justify-center">
+              <div class="space-y-6">
+                <div class="flex gap-4">
+                  <div class="flex-none mt-1">
+                    <div
+                      class="h-10 w-10 rounded-lg bg-green-500/10 flex items-center justify-center"
+                    >
+                      <span class="material-symbols-outlined text-green-500"
+                        >chat</span
+                      >
+                    </div>
+                  </div>
+                  <div>
+                    <h3
+                      class="text-lg font-bold text-slate-900 dark:text-white"
+                    >
+                      Enterprise Chatbots
+                    </h3>
+                    <p class="mt-1 text-slate-600 dark:text-gray-400">
+                      Build context-aware customer service agents that can
+                      process refund receipts (images) and answer policy
+                      questions simultaneously.
+                    </p>
+                  </div>
+                </div>
+                <div class="flex gap-4">
+                  <div class="flex-none mt-1">
+                    <div
+                      class="h-10 w-10 rounded-lg bg-purple-500/10 flex items-center justify-center"
+                    >
+                      <span class="material-symbols-outlined text-purple-500"
+                        >analytics</span
+                      >
+                    </div>
+                  </div>
+                  <div>
+                    <h3
+                      class="text-lg font-bold text-slate-900 dark:text-white"
+                    >
+                      Financial Analysis
+                    </h3>
+                    <p class="mt-1 text-slate-600 dark:text-gray-400">
+                      Upload quarterly earning reports (PDFs) and spreadsheet
+                      data to generate instant summaries and trend analysis.
+                    </p>
+                  </div>
+                </div>
+                <div class="flex gap-4">
+                  <div class="flex-none mt-1">
+                    <div
+                      class="h-10 w-10 rounded-lg bg-orange-500/10 flex items-center justify-center"
+                    >
+                      <span class="material-symbols-outlined text-orange-500"
+                        >movie_creation</span
+                      >
+                    </div>
+                  </div>
+                  <div>
+                    <h3
+                      class="text-lg font-bold text-slate-900 dark:text-white"
+                    >
+                      Content Generation
+                    </h3>
+                    <p class="mt-1 text-slate-600 dark:text-gray-400">
+                      Generate creative captions for video content or storyboard
+                      descriptions based on simple text prompts.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Model Sizes Comparison -->
+      <section class="py-24 bg-white dark:bg-[#0f111a]">
+        <div class="mx-auto max-w-7xl px-6 lg:px-8">
+          <div class="mx-auto max-w-2xl text-center mb-12">
+            <h2
+              class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white"
+            >
+              Optimized for every task
+            </h2>
+            <p class="mt-4 text-slate-600 dark:text-gray-400">
+              Choose the model size that fits your needs, from on-device
+              efficiency to data center power.
+            </p>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Nano -->
+            <div
+              class="rounded-xl border border-gray-200 dark:border-[#232948] p-6 bg-gray-50 dark:bg-[#15192b] flex flex-col"
+            >
+              <div class="mb-4">
+                <span
+                  class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300"
+                  >Efficient</span
+                >
+              </div>
+              <h3 class="text-2xl font-bold text-slate-900 dark:text-white">
+                Gemini Nano
+              </h3>
+              <p class="mt-2 text-sm text-slate-600 dark:text-gray-400 flex-1">
+                Built for on-device tasks where efficiency and privacy are
+                paramount.
+              </p>
+              <ul
+                class="mt-6 space-y-3 text-sm text-slate-600 dark:text-gray-400"
+              >
+                <li class="flex items-center gap-2">
+                  <span
+                    class="material-symbols-outlined text-green-500 text-[18px]"
+                    >check</span
+                  >
+                  On-device processing
+                </li>
+                <li class="flex items-center gap-2">
+                  <span
+                    class="material-symbols-outlined text-green-500 text-[18px]"
+                    >check</span
+                  >
+                  Low latency
+                </li>
+              </ul>
+            </div>
+            <!-- Pro -->
+            <div
+              class="rounded-xl border-2 border-primary p-6 bg-white dark:bg-[#1e2338] shadow-xl relative flex flex-col"
+            >
+              <div
+                class="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider"
+              >
+                Most Popular
+              </div>
+              <div class="mb-4">
+                <span
+                  class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300"
+                  >Versatile</span
+                >
+              </div>
+              <h3 class="text-2xl font-bold text-slate-900 dark:text-white">
+                Gemini Pro
+              </h3>
+              <p class="mt-2 text-sm text-slate-600 dark:text-gray-400 flex-1">
+                The best balance of performance and cost for scaling across a
+                wide range of tasks.
+              </p>
+              <ul
+                class="mt-6 space-y-3 text-sm text-slate-600 dark:text-gray-400"
+              >
+                <li class="flex items-center gap-2">
+                  <span
+                    class="material-symbols-outlined text-green-500 text-[18px]"
+                    >check</span
+                  >
+                  Advanced reasoning
+                </li>
+                <li class="flex items-center gap-2">
+                  <span
+                    class="material-symbols-outlined text-green-500 text-[18px]"
+                    >check</span
+                  >
+                  Multimodal capability
+                </li>
+              </ul>
+            </div>
+            <!-- Ultra -->
+            <div
+              class="rounded-xl border border-gray-200 dark:border-[#232948] p-6 bg-gray-50 dark:bg-[#15192b] flex flex-col"
+            >
+              <div class="mb-4">
+                <span
+                  class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300"
+                  >Powerful</span
+                >
+              </div>
+              <h3 class="text-2xl font-bold text-slate-900 dark:text-white">
+                Gemini Ultra
+              </h3>
+              <p class="mt-2 text-sm text-slate-600 dark:text-gray-400 flex-1">
+                Our most capable model for highly complex tasks.
+              </p>
+              <ul
+                class="mt-6 space-y-3 text-sm text-slate-600 dark:text-gray-400"
+              >
+                <li class="flex items-center gap-2">
+                  <span
+                    class="material-symbols-outlined text-green-500 text-[18px]"
+                    >check</span
+                  >
+                  State-of-the-art benchmarks
+                </li>
+                <li class="flex items-center gap-2">
+                  <span
+                    class="material-symbols-outlined text-green-500 text-[18px]"
+                    >check</span
+                  >
+                  Complex coding &amp; math
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- CTA Section -->
+      <section
+        class="relative isolate overflow-hidden bg-background-light dark:bg-[#111422] py-16 sm:py-24 lg:py-32"
+      >
+        <div class="mx-auto max-w-7xl px-6 lg:px-8">
+          <div class="mx-auto max-w-2xl text-center">
+            <h2
+              class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-4xl"
+            >
+              Ready to build the future?
+            </h2>
+            <p
+              class="mx-auto mt-6 max-w-xl text-lg leading-8 text-slate-600 dark:text-gray-400"
+            >
+              Join thousands of developers building the next generation of
+              AI-powered applications with Gemini.
+            </p>
+            <div class="mt-10 flex items-center justify-center gap-x-6">
+              <a
+                class="rounded-md bg-primary px-5 py-3 text-sm font-semibold text-white shadow-sm hover:bg-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                href="#"
+                >Get API Key</a
+              >
+              <a
+                class="text-sm font-semibold leading-6 text-slate-900 dark:text-white flex items-center gap-1"
+                href="#"
+                >Read documentation <span aria-hidden="true">→</span></a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- Footer -->
+    <footer
+      class="bg-white dark:bg-[#0c0e19] border-t border-gray-200 dark:border-[#232948]"
+    >
+      <div class="mx-auto max-w-7xl overflow-hidden px-6 py-12 lg:px-8">
+        <nav
+          aria-label="Footer"
+          class="-mb-6 columns-2 sm:flex sm:justify-center sm:space-x-12"
+        >
+          <div class="pb-6">
+            <a
+              class="text-sm leading-6 text-slate-600 dark:text-gray-400 hover:text-slate-900 dark:hover:text-white"
+              href="#"
+              >About</a
+            >
+          </div>
+          <div class="pb-6">
+            <a
+              class="text-sm leading-6 text-slate-600 dark:text-gray-400 hover:text-slate-900 dark:hover:text-white"
+              href="#"
+              >Blog</a
+            >
+          </div>
+          <div class="pb-6">
+            <a
+              class="text-sm leading-6 text-slate-600 dark:text-gray-400 hover:text-slate-900 dark:hover:text-white"
+              href="#"
+              >Jobs</a
+            >
+          </div>
+          <div class="pb-6">
+            <a
+              class="text-sm leading-6 text-slate-600 dark:text-gray-400 hover:text-slate-900 dark:hover:text-white"
+              href="#"
+              >Press</a
+            >
+          </div>
+          <div class="pb-6">
+            <a
+              class="text-sm leading-6 text-slate-600 dark:text-gray-400 hover:text-slate-900 dark:hover:text-white"
+              href="#"
+              >Privacy</a
+            >
+          </div>
+          <div class="pb-6">
+            <a
+              class="text-sm leading-6 text-slate-600 dark:text-gray-400 hover:text-slate-900 dark:hover:text-white"
+              href="#"
+              >Terms</a
+            >
+          </div>
+        </nav>
+        <div class="mt-10 flex justify-center space-x-10 text-center">
+          <p class="text-xs leading-5 text-slate-500 dark:text-gray-500">
+            © 2024 Google DeepMind. All rights reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

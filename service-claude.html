@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Claude LLM Detail Page</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <!-- Tailwind Config -->
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#1337ec",
+              "background-light": "#f6f6f8",
+              "background-dark": "#101322",
+              "card-dark": "#1a1d2d",
+              "border-dark": "#232948",
+            },
+            fontFamily: {
+              display: ["Space Grotesk", "sans-serif"],
+              mono: [
+                "ui-monospace",
+                "SFMono-Regular",
+                "Menlo",
+                "Monaco",
+                "Consolas",
+                "Liberation Mono",
+                "Courier New",
+                "monospace",
+              ],
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body
+    class="bg-background-light dark:bg-background-dark min-h-screen flex flex-col font-display text-slate-900 dark:text-white antialiased selection:bg-primary selection:text-white overflow-x-hidden"
+  >
+    <!-- TopNavBar -->
+    <header
+      class="sticky top-0 z-50 w-full border-b border-solid border-slate-200 dark:border-[#232948] bg-white/80 dark:bg-[#111422]/80 backdrop-blur-md"
+    >
+      <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+          <!-- Logo & Nav -->
+          <div class="flex items-center gap-8">
+            <a class="flex items-center gap-3 group" href="#">
+              <div
+                class="size-8 text-primary dark:text-white transition-transform group-hover:scale-110"
+              >
+                <svg
+                  class="w-full h-full"
+                  fill="none"
+                  viewbox="0 0 48 48"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M39.475 21.6262C40.358 21.4363 40.6863 21.5589 40.7581 21.5934C40.7876 21.655 40.8547 21.857 40.8082 22.3336C40.7408 23.0255 40.4502 24.0046 39.8572 25.2301C38.6799 27.6631 36.5085 30.6631 33.5858 33.5858C30.6631 36.5085 27.6632 38.6799 25.2301 39.8572C24.0046 40.4502 23.0255 40.7407 22.3336 40.8082C21.8571 40.8547 21.6551 40.7875 21.5934 40.7581C21.5589 40.6863 21.4363 40.358 21.6262 39.475C21.8562 38.4054 22.4689 36.9657 23.5038 35.2817C24.7575 33.2417 26.5497 30.9744 28.7621 28.762C30.9744 26.5497 33.2417 24.7574 35.2817 23.5037C36.9657 22.4689 38.4054 21.8562 39.475 21.6262ZM4.41189 29.2403L18.7597 43.5881C19.8813 44.7097 21.4027 44.9179 22.7217 44.7893C24.0585 44.659 25.5148 44.1631 26.9723 43.4579C29.9052 42.0387 33.2618 39.5667 36.4142 36.4142C39.5667 33.2618 42.0387 29.9052 43.4579 26.9723C44.1631 25.5148 44.659 24.0585 44.7893 22.7217C44.9179 21.4027 44.7097 19.8813 43.5881 18.7597L29.2403 4.41187C27.8527 3.02428 25.8765 3.02573 24.2861 3.36776C22.6081 3.72863 20.7334 4.58419 18.8396 5.74801C16.4978 7.18716 13.9881 9.18353 11.5858 11.5858C9.18354 13.988 7.18717 16.4978 5.74802 18.8396C4.58421 20.7334 3.72865 22.6081 3.36778 24.2861C3.02574 25.8765 3.02429 27.8527 4.41189 29.2403Z"
+                    fill="currentColor"
+                    fill-rule="evenodd"
+                  ></path>
+                </svg>
+              </div>
+              <h2
+                class="text-slate-900 dark:text-white text-lg font-bold tracking-tight"
+              >
+                LLM Catalog
+              </h2>
+            </a>
+            <nav class="hidden md:flex items-center gap-6">
+              <a
+                class="text-slate-600 dark:text-slate-300 text-sm font-medium hover:text-primary dark:hover:text-white transition-colors"
+                href="#"
+                >Models</a
+              >
+              <a
+                class="text-slate-600 dark:text-slate-300 text-sm font-medium hover:text-primary dark:hover:text-white transition-colors"
+                href="#"
+                >Pricing</a
+              >
+              <a
+                class="text-slate-600 dark:text-slate-300 text-sm font-medium hover:text-primary dark:hover:text-white transition-colors"
+                href="#"
+                >Documentation</a
+              >
+            </nav>
+          </div>
+          <!-- Right Actions -->
+          <div class="flex items-center gap-4">
+            <div
+              class="hidden sm:flex items-center w-64 h-10 rounded-lg bg-slate-100 dark:bg-[#232948] px-3 focus-within:ring-2 ring-primary/50 transition-all"
+            >
+              <span
+                class="material-symbols-outlined text-slate-400 dark:text-[#929bc9]"
+                style="font-size: 20px"
+                >search</span
+              >
+              <input
+                class="w-full bg-transparent border-none text-sm text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-[#929bc9] focus:ring-0"
+                placeholder="Search models..."
+              />
+            </div>
+            <button
+              class="flex items-center justify-center h-10 px-4 rounded-lg bg-primary hover:bg-blue-700 text-white text-sm font-bold transition-colors"
+            >
+              Sign In
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- Main Layout Grid -->
+    <main
+      class="flex-grow max-w-[1280px] w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12"
+    >
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+        <!-- Left Content Column (8/12) -->
+        <div class="lg:col-span-8 flex flex-col gap-10">
+          <!-- Hero Section (Condensed) -->
+          <div class="flex flex-col gap-6">
+            <!-- Breadcrumbs -->
+            <div
+              class="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400"
+            >
+              <a class="hover:text-primary transition-colors" href="#"
+                >Models</a
+              >
+              <span class="material-symbols-outlined" style="font-size: 16px"
+                >chevron_right</span
+              >
+              <span class="text-slate-900 dark:text-white font-medium"
+                >Claude 3 Opus</span
+              >
+            </div>
+            <div class="flex flex-col md:flex-row gap-8 items-start">
+              <div
+                class="size-24 min-w-24 rounded-2xl bg-gradient-to-br from-[#d97757] to-[#e44d2e] flex items-center justify-center shadow-lg shadow-orange-500/20"
+              >
+                <span
+                  class="material-symbols-outlined text-white"
+                  style="font-size: 48px"
+                  >psychology</span
+                >
+              </div>
+              <div class="flex flex-col gap-3">
+                <h1
+                  class="text-4xl md:text-5xl font-black tracking-tight leading-tight"
+                >
+                  Claude: Anthropic's Safe and Helpful AI
+                </h1>
+                <p
+                  class="text-lg text-slate-600 dark:text-slate-300 max-w-2xl leading-relaxed"
+                >
+                  A next-generation AI assistant built for safety, reliability,
+                  and large-context reasoning. Capable of complex tasks with
+                  Constitutional AI principles.
+                </p>
+                <div class="flex flex-wrap gap-2 mt-2">
+                  <span
+                    class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-green-500/10 text-green-600 dark:text-green-400 border border-green-500/20"
+                  >
+                    <span
+                      class="size-2 rounded-full bg-green-500 animate-pulse"
+                    ></span>
+                    Active v3.0
+                  </span>
+                  <span
+                    class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-slate-100 dark:bg-[#232948] text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-[#323b67]"
+                  >
+                    LLM
+                  </span>
+                  <span
+                    class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-slate-100 dark:bg-[#232948] text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-[#323b67]"
+                  >
+                    Chat Completion
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Stats Grid (Integrated) -->
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div
+              class="flex flex-col gap-1 p-5 rounded-xl bg-white dark:bg-[#1a1d2d] border border-slate-200 dark:border-[#323b67] shadow-sm"
+            >
+              <div
+                class="flex items-center gap-2 mb-2 text-slate-500 dark:text-[#929bc9] text-sm font-medium"
+              >
+                <span class="material-symbols-outlined" style="font-size: 20px"
+                  >layers</span
+                >
+                Context Window
+              </div>
+              <p class="text-2xl font-bold tracking-tight">200k Tokens</p>
+            </div>
+            <div
+              class="flex flex-col gap-1 p-5 rounded-xl bg-white dark:bg-[#1a1d2d] border border-slate-200 dark:border-[#323b67] shadow-sm"
+            >
+              <div
+                class="flex items-center gap-2 mb-2 text-slate-500 dark:text-[#929bc9] text-sm font-medium"
+              >
+                <span class="material-symbols-outlined" style="font-size: 20px"
+                  >verified_user</span
+                >
+                Safety Tier
+              </div>
+              <p class="text-2xl font-bold tracking-tight">Enterprise</p>
+            </div>
+            <div
+              class="flex flex-col gap-1 p-5 rounded-xl bg-white dark:bg-[#1a1d2d] border border-slate-200 dark:border-[#323b67] shadow-sm"
+            >
+              <div
+                class="flex items-center gap-2 mb-2 text-slate-500 dark:text-[#929bc9] text-sm font-medium"
+              >
+                <span class="material-symbols-outlined" style="font-size: 20px"
+                  >speed</span
+                >
+                Latency
+              </div>
+              <p class="text-2xl font-bold tracking-tight">~50ms</p>
+            </div>
+            <div
+              class="flex flex-col gap-1 p-5 rounded-xl bg-white dark:bg-[#1a1d2d] border border-slate-200 dark:border-[#323b67] shadow-sm"
+            >
+              <div
+                class="flex items-center gap-2 mb-2 text-slate-500 dark:text-[#929bc9] text-sm font-medium"
+              >
+                <span class="material-symbols-outlined" style="font-size: 20px"
+                  >psychology_alt</span
+                >
+                Reasoning
+              </div>
+              <p class="text-2xl font-bold tracking-tight">State of Art</p>
+            </div>
+          </div>
+          <!-- Feature Section -->
+          <div>
+            <h2 class="text-2xl font-bold mb-6 flex items-center gap-3">
+              <span class="material-symbols-outlined text-primary"
+                >auto_awesome</span
+              >
+              Key Capabilities
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div
+                class="p-6 rounded-xl bg-white dark:bg-[#191e33] border border-slate-200 dark:border-[#323b67] flex gap-4 group hover:border-primary/50 transition-colors"
+              >
+                <div
+                  class="size-12 rounded-lg bg-blue-50 dark:bg-primary/10 flex items-center justify-center text-primary shrink-0"
+                >
+                  <span class="material-symbols-outlined">policy</span>
+                </div>
+                <div>
+                  <h3 class="font-bold text-lg mb-2">Constitutional AI</h3>
+                  <p
+                    class="text-slate-600 dark:text-[#929bc9] text-sm leading-relaxed"
+                  >
+                    Built with a constitution of ethical principles to be
+                    helpful, harmless, and honest. Claude refuses harmful
+                    requests.
+                  </p>
+                </div>
+              </div>
+              <div
+                class="p-6 rounded-xl bg-white dark:bg-[#191e33] border border-slate-200 dark:border-[#323b67] flex gap-4 group hover:border-primary/50 transition-colors"
+              >
+                <div
+                  class="size-12 rounded-lg bg-blue-50 dark:bg-primary/10 flex items-center justify-center text-primary shrink-0"
+                >
+                  <span class="material-symbols-outlined">security</span>
+                </div>
+                <div>
+                  <h3 class="font-bold text-lg mb-2">Enterprise Security</h3>
+                  <p
+                    class="text-slate-600 dark:text-[#929bc9] text-sm leading-relaxed"
+                  >
+                    SOC 2 Type II compliant with strict data retention policies.
+                    Your data is not used to train our base models.
+                  </p>
+                </div>
+              </div>
+              <div
+                class="p-6 rounded-xl bg-white dark:bg-[#191e33] border border-slate-200 dark:border-[#323b67] flex gap-4 group hover:border-primary/50 transition-colors"
+              >
+                <div
+                  class="size-12 rounded-lg bg-blue-50 dark:bg-primary/10 flex items-center justify-center text-primary shrink-0"
+                >
+                  <span class="material-symbols-outlined">description</span>
+                </div>
+                <div>
+                  <h3 class="font-bold text-lg mb-2">Large Context Window</h3>
+                  <p
+                    class="text-slate-600 dark:text-[#929bc9] text-sm leading-relaxed"
+                  >
+                    Process hundreds of pages of documents in a single prompt
+                    with near-perfect recall for complex analysis.
+                  </p>
+                </div>
+              </div>
+              <div
+                class="p-6 rounded-xl bg-white dark:bg-[#191e33] border border-slate-200 dark:border-[#323b67] flex gap-4 group hover:border-primary/50 transition-colors"
+              >
+                <div
+                  class="size-12 rounded-lg bg-blue-50 dark:bg-primary/10 flex items-center justify-center text-primary shrink-0"
+                >
+                  <span class="material-symbols-outlined">code</span>
+                </div>
+                <div>
+                  <h3 class="font-bold text-lg mb-2">Code Generation</h3>
+                  <p
+                    class="text-slate-600 dark:text-[#929bc9] text-sm leading-relaxed"
+                  >
+                    Expert proficiency in Python, JavaScript, C++, and other
+                    major languages for debugging and generation.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Developer Experience (Code Snippet) -->
+          <div>
+            <h2 class="text-2xl font-bold mb-6 flex items-center gap-3">
+              <span class="material-symbols-outlined text-primary"
+                >terminal</span
+              >
+              Integration
+            </h2>
+            <div
+              class="rounded-xl overflow-hidden border border-slate-200 dark:border-[#323b67] bg-[#0d1117]"
+            >
+              <div
+                class="flex items-center justify-between px-4 py-3 bg-[#161b22] border-b border-[#30363d]"
+              >
+                <span class="text-xs font-mono text-slate-400"
+                  >completion.py</span
+                >
+                <div class="flex gap-2">
+                  <div class="size-3 rounded-full bg-[#ff5f56]"></div>
+                  <div class="size-3 rounded-full bg-[#ffbd2e]"></div>
+                  <div class="size-3 rounded-full bg-[#27c93f]"></div>
+                </div>
+              </div>
+              <div class="p-6 overflow-x-auto">
+                <pre
+                  class="text-sm font-mono leading-relaxed text-[#c9d1d9] whitespace-pre"
+                ><code><span class="text-[#ff7b72]">import</span> anthropic
+
+client = anthropic.Anthropic(
+    api_key=<span class="text-[#a5d6ff]">"my_api_key"</span>,
+)
+
+message = client.messages.<span class="text-[#d2a8ff]">create</span>(
+    model=<span class="text-[#a5d6ff]">"claude-3-opus-20240229"</span>,
+    max_tokens=<span class="text-[#79c0ff]">1000</span>,
+    temperature=<span class="text-[#79c0ff]">0.0</span>,
+    system=<span class="text-[#a5d6ff]">"Respond only in Yoda-speak."</span>,
+    messages=[
+        {<span class="text-[#7ee787]">"role"</span>: <span class="text-[#a5d6ff]">"user"</span>, <span class="text-[#7ee787]">"content"</span>: <span class="text-[#a5d6ff]">"How are you today?"</span>}
+    ]
+)
+
+<span class="text-[#ff7b72]">print</span>(message.content)</code></pre>
+              </div>
+            </div>
+          </div>
+          <!-- Ethical Guidelines Section -->
+          <div
+            class="p-8 rounded-2xl bg-gradient-to-br from-slate-100 to-white dark:from-[#1a1d2d] dark:to-[#111422] border border-slate-200 dark:border-[#323b67]"
+          >
+            <div class="flex flex-col md:flex-row gap-8 items-center">
+              <div class="flex-1">
+                <h2 class="text-2xl font-bold mb-4">Ethical Guidelines</h2>
+                <p
+                  class="text-slate-600 dark:text-slate-300 mb-6 leading-relaxed"
+                >
+                  Claude is designed to be helpful, harmless, and honest. Our
+                  Constitutional AI training method ensures that the model
+                  follows a set of safety principles, even when asked to perform
+                  ambiguous or potentially harmful tasks.
+                </p>
+                <ul class="space-y-3">
+                  <li
+                    class="flex items-center gap-3 text-sm text-slate-700 dark:text-slate-300"
+                  >
+                    <span class="material-symbols-outlined text-green-500"
+                      >check_circle</span
+                    >
+                    Rejects generation of hate speech or violence
+                  </li>
+                  <li
+                    class="flex items-center gap-3 text-sm text-slate-700 dark:text-slate-300"
+                  >
+                    <span class="material-symbols-outlined text-green-500"
+                      >check_circle</span
+                    >
+                    Maintains political neutrality
+                  </li>
+                  <li
+                    class="flex items-center gap-3 text-sm text-slate-700 dark:text-slate-300"
+                  >
+                    <span class="material-symbols-outlined text-green-500"
+                      >check_circle</span
+                    >
+                    Respects user privacy and data boundaries
+                  </li>
+                </ul>
+              </div>
+              <div
+                class="w-full md:w-1/3 aspect-square relative rounded-xl overflow-hidden bg-slate-900 flex items-center justify-center"
+              >
+                <!-- Abstract Representation of Shield/Safety -->
+                <div
+                  class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1639322537228-f710d846310a?q=80&amp;w=2632&amp;auto=format&amp;fit=crop')] bg-cover bg-center opacity-40 mix-blend-overlay"
+                  data-alt="Abstract blue digital network background representing AI safety"
+                ></div>
+                <span
+                  class="material-symbols-outlined text-white relative z-10"
+                  style="font-size: 80px"
+                  >shield_lock</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Right Sidebar Column (4/12) - Sticky -->
+        <div class="lg:col-span-4 space-y-6">
+          <div class="sticky top-24 space-y-6">
+            <!-- Action Card -->
+            <div
+              class="p-6 rounded-2xl bg-white dark:bg-[#1a1d2d] border border-slate-200 dark:border-[#323b67] shadow-xl shadow-slate-200/50 dark:shadow-none"
+            >
+              <div class="flex items-center justify-between mb-6">
+                <span
+                  class="text-sm font-bold text-slate-500 dark:text-[#929bc9]"
+                  >PRICING</span
+                >
+                <span
+                  class="px-2 py-1 rounded bg-green-500/10 text-green-600 dark:text-green-400 text-xs font-bold border border-green-500/20"
+                  >PAY AS YOU GO</span
+                >
+              </div>
+              <div class="mb-6">
+                <div class="flex items-baseline gap-1">
+                  <span
+                    class="text-3xl font-black text-slate-900 dark:text-white"
+                    >$15.00</span
+                  >
+                  <span class="text-sm text-slate-500">/ MTokens (Input)</span>
+                </div>
+                <div class="flex items-baseline gap-1">
+                  <span
+                    class="text-3xl font-black text-slate-900 dark:text-white"
+                    >$75.00</span
+                  >
+                  <span class="text-sm text-slate-500">/ MTokens (Output)</span>
+                </div>
+              </div>
+              <button
+                class="w-full h-12 rounded-lg bg-primary hover:bg-blue-600 text-white font-bold text-base transition-all shadow-lg shadow-blue-900/20 mb-3 flex items-center justify-center gap-2"
+              >
+                Request Access
+                <span class="material-symbols-outlined" style="font-size: 20px"
+                  >arrow_forward</span
+                >
+              </button>
+              <button
+                class="w-full h-12 rounded-lg bg-white dark:bg-[#232948] border border-slate-200 dark:border-[#323b67] text-slate-700 dark:text-white font-bold text-sm hover:bg-slate-50 dark:hover:bg-[#323b67] transition-all"
+              >
+                View Documentation
+              </button>
+              <div
+                class="mt-6 pt-6 border-t border-slate-100 dark:border-[#232948] space-y-3"
+              >
+                <div class="flex justify-between text-sm">
+                  <span class="text-slate-500 dark:text-[#929bc9]"
+                    >Provider</span
+                  >
+                  <span class="font-medium text-slate-900 dark:text-white"
+                    >Anthropic</span
+                  >
+                </div>
+                <div class="flex justify-between text-sm">
+                  <span class="text-slate-500 dark:text-[#929bc9]"
+                    >Release Date</span
+                  >
+                  <span class="font-medium text-slate-900 dark:text-white"
+                    >Feb 2024</span
+                  >
+                </div>
+                <div class="flex justify-between text-sm">
+                  <span class="text-slate-500 dark:text-[#929bc9]"
+                    >License</span
+                  >
+                  <span class="font-medium text-slate-900 dark:text-white"
+                    >Commercial</span
+                  >
+                </div>
+              </div>
+            </div>
+            <!-- Enterprise Callout -->
+            <div
+              class="p-6 rounded-2xl bg-gradient-to-br from-[#1a1d2d] to-[#111422] border border-[#323b67] relative overflow-hidden group"
+            >
+              <div
+                class="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity"
+              ></div>
+              <h3 class="text-lg font-bold text-white mb-2 relative z-10">
+                Need Custom Scale?
+              </h3>
+              <p class="text-sm text-[#929bc9] mb-4 relative z-10">
+                For dedicated instances, custom retention policies, and volume
+                discounts.
+              </p>
+              <a
+                class="inline-flex items-center text-sm font-bold text-primary hover:text-white transition-colors relative z-10"
+                href="#"
+              >
+                Contact Sales
+                <span
+                  class="material-symbols-outlined ml-1"
+                  style="font-size: 16px"
+                  >arrow_outward</span
+                >
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer
+      class="border-t border-slate-200 dark:border-[#232948] bg-white dark:bg-[#111422] py-12 mt-auto"
+    >
+      <div
+        class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6"
+      >
+        <div class="text-slate-500 dark:text-[#929bc9] text-sm">
+          © 2024 LLM Catalog. All rights reserved.
+        </div>
+        <div class="flex gap-6">
+          <a
+            class="text-slate-500 dark:text-[#929bc9] hover:text-primary transition-colors"
+            href="#"
+            >Privacy Policy</a
+          >
+          <a
+            class="text-slate-500 dark:text-[#929bc9] hover:text-primary transition-colors"
+            href="#"
+            >Terms of Service</a
+          >
+          <a
+            class="text-slate-500 dark:text-[#929bc9] hover:text-primary transition-colors"
+            href="#"
+            >Support</a
+          >
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
